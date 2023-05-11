@@ -1,4 +1,24 @@
 # backend
+## Configuracion
+![img.png](img.png)
+
+
+| Cosa      | Version |
+|-----------|---------|
+| Java      | 17      |
+| SpringBoot| 3.0.6   |
+
+Los datos de conexion de la base de datos se encuentra en el archivo `/src/main/resources/application.properties`,
+favor de nunca subirlo a github., de hecho este se encontrará en el `.gitignore
+
+
+
+
+## Para entender SpringBoot
+Necesitan leer 
+- JPA
+    - Entity
+    - JpaRepository
 
 ## Login
 
