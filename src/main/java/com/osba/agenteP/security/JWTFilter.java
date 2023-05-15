@@ -26,20 +26,14 @@ public class JWTFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException{
         String authHeader = request.getHeader("Authorization");
         if(authHeader != null && !authHeader.isBlank() && authHeader.startsWith("Bearer ")){
-            System.out.println("Hay auth");
             String token = authHeader.substring(7);
-            System.out.println(token);
             if(token == null || token.isBlank()) {
-                System.out.println("Token invalido");
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Token invalido en Bearer Header");
             } else {
                 try{
+
                     String rfc = jwtUtil.validateTokenAndRetrieveSubject(token);
-                    System.out.println(rfc);
                     UserDetails userDetails = userDetailService.loadUserByUsername(rfc);
-
-                    System.out.println(userDetails.getUsername());
-
 
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             userDetails.getUsername(),

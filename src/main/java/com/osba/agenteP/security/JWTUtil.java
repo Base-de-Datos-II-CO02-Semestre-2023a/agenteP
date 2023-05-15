@@ -19,8 +19,6 @@ public class JWTUtil {
     private String secret;
 
     public String generateToken(String rfc) throws IllegalArgumentException{
-        Date date = new Date();
-
         return JWT.create()
                 .withSubject("User Details")
                 .withClaim("rfc", rfc)
@@ -35,15 +33,8 @@ public class JWTUtil {
                 .withIssuer("osba")
                 .build();
 
-
-    try {
         DecodedJWT decodedJWT = jwtVerifier.verify(token);
-        System.out.println("Decodificado");
         return decodedJWT.getClaim("rfc").asString();
-    }catch (Exception e){
-        System.out.println(e.getMessage());
-    }
-    return null;
     }
 
 }

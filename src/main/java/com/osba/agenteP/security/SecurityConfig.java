@@ -24,7 +24,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
-    @Autowired private EmpleadoRepository empleadoRepository;
     @Autowired private JWTFilter jwtFilter;
     @Autowired private MyUserDetailService userDetailService;
 
@@ -35,8 +34,8 @@ public class SecurityConfig{
                 .cors()
                 .and()
                 .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/auth/**").permitAll()
-                    .requestMatchers("/empleados").hasAnyAuthority("Recursos_Humanos", "Admin","Finanzas")
+                    .requestMatchers("/auth/login").permitAll()
+                    .requestMatchers("/empleados", "/auth/register").hasAnyAuthority("Recursos_Humanos", "Admin")
 
                     .anyRequest().denyAll()
                 )

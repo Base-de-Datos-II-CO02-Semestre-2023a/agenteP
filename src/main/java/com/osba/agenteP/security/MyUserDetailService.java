@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Optional;
 
 @Component
@@ -50,7 +51,10 @@ public class MyUserDetailService implements UserDetailsService {
             throw new EmpleadoSinContratoException("Empleado "+empleado.getId()+" tiene errores con el contrato, favor de contactar a RH");
         }
         RegistroContratos contrato = registroContratosRes.get();
-        System.out.println(contrato.getPuesto());
+        if ( contrato.getFechaFin() != null && contrato.getFechaFin().after(new Date())){
+            throw new EmpleadoSinContratoException("Al empleado "+empleado.getId()+" ya se le acabó el contrato, favor de contactar a RH");
+        }
+
         return new User(
                 empleado.getId()+"",
                 empleado.getPassword(),

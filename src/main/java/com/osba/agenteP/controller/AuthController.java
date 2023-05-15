@@ -38,7 +38,6 @@ public class AuthController {
 
     @PostMapping("/register")
     public Map<String, Object> registerHandler(@RequestBody Empleado empleado){
-        System.out.println(empleado.toString());
         String encodedPassword = passwordEncoder.encode(empleado.getPassword());
         empleado.setPassword(encodedPassword);
         empleado = empleadoRepository.save(empleado);
@@ -49,6 +48,7 @@ public class AuthController {
     @PostMapping("/login")
     @ResponseBody()
     public ResponseEntity<Map<String, Object>> loginHandler(@RequestBody LoginCredentials body) throws Exception {
+
         try{
             UsernamePasswordAuthenticationToken authInputToken =
                     new UsernamePasswordAuthenticationToken(

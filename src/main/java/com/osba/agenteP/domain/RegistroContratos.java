@@ -1,5 +1,6 @@
 package com.osba.agenteP.domain;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class RegistroContratos {
     private int id;
     private int idEmpleado;
     private Date fechaInicio;
+    @Nullable
     private Date fechaFin;
     private String puesto;
     private float salario;
