@@ -17,20 +17,12 @@ import java.util.Date;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Empleado {
+public class Empleado extends Sujeto {
+    
+    
     @Id @GeneratedValue(generator = "empleado_id_seq")
     @SequenceGenerator(name = "empleado_id_seq", sequenceName = "empleado_id_seq", allocationSize = 1)
-    private Integer id;
-    private String nombre;
-    private BigInteger telefono;
-    private String correo;
-    private Integer codigoPostal;
-    private String idCiudad;
-    private String calle;
-    @Nullable
-    private Integer numeroInterno;
-    @Nullable
-    private Integer numeroExterno;
+   
     private BigInteger nss;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
@@ -41,5 +33,11 @@ public class Empleado {
     private Integer contrato;
 
     private float indiceProductividad;
+    
+    public Empleado (){
+        
+        super();
+        
+    ]
 
 }
