@@ -26,6 +26,7 @@ public class JWTFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException{
         String authHeader = request.getHeader("Authorization");
         if(authHeader != null && !authHeader.isBlank() && authHeader.startsWith("Bearer ")){
+
             System.out.println("Hay auth");
             String token = authHeader.substring(7);
             System.out.println(token);

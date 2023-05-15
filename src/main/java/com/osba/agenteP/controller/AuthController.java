@@ -38,17 +38,20 @@ public class AuthController {
 
     @PostMapping("/register")
     public Map<String, Object> registerHandler(@RequestBody Empleado empleado){
+
         System.out.println(empleado.toString());
         String encodedPassword = passwordEncoder.encode(empleado.getPassword());
         empleado.setPassword(encodedPassword);
         empleado = empleadoRepository.save(empleado);
         String token = jwtUtil.generateToken(empleado.getRfc());
         return Collections.singletonMap("jwt-token", token);
+
     }
 
     @PostMapping("/login")
     @ResponseBody()
     public ResponseEntity<Map<String, Object>> loginHandler(@RequestBody LoginCredentials body) throws Exception {
+
         try{
             UsernamePasswordAuthenticationToken authInputToken =
                     new UsernamePasswordAuthenticationToken(
@@ -58,13 +61,15 @@ public class AuthController {
             authenticationManager.authenticate(authInputToken);
             String token = jwtUtil.generateToken(body.getRfc());
             return ResponseEntity.ok(Collections.singletonMap("jwt_token", token));
+
         } catch (UsernameNotFoundException e){
+
             if (e instanceof EmpleadoSinContratoException){
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", e.getMessage()));
             }
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", e.getMessage()));
-        }
 
+        }
     }
 
 

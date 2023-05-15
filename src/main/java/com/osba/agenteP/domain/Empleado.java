@@ -18,6 +18,7 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 public class Empleado {
+
     @Id @GeneratedValue(generator = "empleado_id_seq")
     @SequenceGenerator(name = "empleado_id_seq", sequenceName = "empleado_id_seq", allocationSize = 1)
     private Integer id;
