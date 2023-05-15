@@ -12,7 +12,7 @@ import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
-@Table(name = "empleado")
+@Table(name = "sujeto")
 @Getter
 @Setter
 @ToString
@@ -33,5 +33,9 @@ public class Sujeto {
     private Integer numeroInterno;
     @Nullable
     private Integer numeroExterno;
+      
+     public Sujeto(){
+           
+     }
  
 }
