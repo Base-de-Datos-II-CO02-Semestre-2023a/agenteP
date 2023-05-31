@@ -11,9 +11,6 @@ import lombok.ToString;
 import java.math.BigInteger;
 import java.util.Date;
 
-/**
- * Clase que representa a un empleado de la empresa
- */
 @Entity
 @Table(name = "empleado")
 @Getter
@@ -21,8 +18,7 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 public class Empleado {
-    //Estas anotaciones son usadas para indicar el nombre de la secuencia en la BD, esto evita el error:
-    // empleado_seq no existe
+
     @Id @GeneratedValue(generator = "empleado_id_seq")
     @SequenceGenerator(name = "empleado_id_seq", sequenceName = "empleado_id_seq", allocationSize = 1)
     private Integer id;
