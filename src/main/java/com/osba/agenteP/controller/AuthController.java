@@ -16,6 +16,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
@@ -30,8 +31,10 @@ public class AuthController {
 
     @Autowired private JWTUtil jwtUtil;
 
+
     @Autowired private AuthenticationManager authenticationManager;
     @Autowired private PasswordEncoder passwordEncoder;
+
     @PostMapping("/register")
     public Map<String, Object> registerHandler(@RequestBody Empleado empleado){
 
@@ -66,14 +69,15 @@ public class AuthController {
 
             return ResponseEntity.ok(data);
         } catch (UsernameNotFoundException e){
+
             if (e instanceof EmpleadoSinContratoException){
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", e.getMessage()));
             }
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", e.getMessage()));
         } catch (AuthenticationException e){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", e.getMessage()));
-        }
 
+        }
     }
 
 
