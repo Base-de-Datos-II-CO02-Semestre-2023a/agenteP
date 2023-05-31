@@ -1,5 +1,6 @@
 package com.osba.agenteP.domain;
 
+import com.osba.agenteP.enums.TipoPuesto;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,15 +14,20 @@ import java.util.Date;
 @Setter
 @ToString
 @Table(name = "registro_contratos")
+
 public class RegistroContratos {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "registro_contratos_id_seq")
+    @SequenceGenerator(name="registro_contratos_id_seq", sequenceName = "registro_contratos_id_seq", allocationSize=1)
     private int id;
     private int idEmpleado;
+    private int idLugar;
     private Date fechaInicio;
     @Nullable
     private Date fechaFin;
-    private String puesto;
+    @Enumerated(EnumType.STRING)
+    private TipoPuesto puesto;
     private float salario;
+    private int horasDiarias;
     private int diasVacaciones;
 
 }

@@ -5,6 +5,7 @@ import com.osba.agenteP.domain.RegistroContratos;
 import com.osba.agenteP.exception.EmpleadoSinContratoException;
 import com.osba.agenteP.repository.EmpleadoRepository;
 import com.osba.agenteP.repository.RegistroContratosRepository;
+import com.osba.agenteP.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -21,6 +22,8 @@ import java.util.Optional;
 @Component
 public class MyUserDetailService implements UserDetailsService {
     @Autowired private EmpleadoRepository empleadoRepository;
+
+    @Autowired private EmpleadoService empleadoService;
 
     @Autowired private RegistroContratosRepository registroContratosRepository;
 
@@ -39,26 +42,11 @@ public class MyUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("Empleado no encontrado");
         }
         Empleado empleado = empleadoRes.get();
-        int id = empleado.getId();
-        Integer contratoId = empleado.getContrato();
-        if (contratoId == null){
-            throw new EmpleadoSinContratoException(empleado.getId()+" No es un empleado activo");
-        }
-
-        Optional<RegistroContratos> registroContratosRes = registroContratosRepository.findById(contratoId);
-
-        if (registroContratosRes.isEmpty()){
-            throw new EmpleadoSinContratoException("Empleado "+empleado.getId()+" tiene errores con el contrato, favor de contactar a RH");
-        }
-        RegistroContratos contrato = registroContratosRes.get();
-        if ( contrato.getFechaFin() != null && contrato.getFechaFin().after(new Date())){
-            throw new EmpleadoSinContratoException("Al empleado "+empleado.getId()+" ya se le acabó el contrato, favor de contactar a RH");
-        }
 
         return new User(
-                empleado.getId()+"",
+                rfc ,
                 empleado.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(contrato.getPuesto()))
+                Collections.singletonList(new SimpleGrantedAuthority(empleadoService.getPuesto(rfc)+""))
         );
     }
 }

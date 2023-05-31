@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -34,10 +35,14 @@ public class SecurityConfig{
                 .cors()
                 .and()
                 .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/auth/login").permitAll()
-                    .requestMatchers("/empleados", "/auth/register").hasAnyAuthority("Recursos_Humanos", "Admin")
+                    .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato").authenticated()
 
-                    .anyRequest().denyAll()
+                    .requestMatchers(HttpMethod.POST,"/empleados", "/auth/register", "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
+                    .requestMatchers(HttpMethod.DELETE, "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
+                    .requestMatchers(HttpMethod.GET, "/empleados", "/empleados/**").hasAnyAuthority("Recursos_Humanos", "Admin")
+
+                        .anyRequest().denyAll()
                 )
                 .userDetailsService(userDetailService)
                 .exceptionHandling()
