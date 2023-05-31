@@ -1,6 +1,6 @@
 package com.osba.agenteP.controller;
 
-import com.osba.agenteP.domain.EmpleadoProductivo;
+import com.osba.agenteP.model.EmpleadoProductivo;
 import com.osba.agenteP.repository.EmpleadoRepository;
 import com.osba.agenteP.service.EmpleadoService;
 import com.osba.agenteP.domain.Empleado;

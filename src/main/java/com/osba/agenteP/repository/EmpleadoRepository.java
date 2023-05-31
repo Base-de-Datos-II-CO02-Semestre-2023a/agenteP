@@ -1,7 +1,7 @@
 package com.osba.agenteP.repository;
 
 import com.osba.agenteP.domain.Empleado;
-import com.osba.agenteP.domain.EmpleadoProductivo;
+import com.osba.agenteP.model.EmpleadoProductivo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
