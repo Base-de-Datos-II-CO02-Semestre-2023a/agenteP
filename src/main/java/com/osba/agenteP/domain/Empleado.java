@@ -34,10 +34,10 @@ public class Empleado extends Sujeto {
 
     private float indiceProductividad;
     
-    public Empleado (){
-        
+    public Empleado () {
+
         super();
-        
-    ]
+
+    }
 
 }
