@@ -23,7 +23,4 @@ public class Cat_Prod_Ser {
     
   private Integer clave;
   private String descripcion;
-    
-  public Cat_Prod_Ser(){}
-
 }

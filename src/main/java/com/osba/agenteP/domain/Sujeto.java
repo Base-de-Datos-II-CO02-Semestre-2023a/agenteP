@@ -21,21 +21,17 @@ import java.util.Date;
 public class Sujeto {
       
     //ATRIBUTOS
-  
+    @Id
     private Integer id;
     private String nombre;
     private BigInteger telefono;
     private String correo;
     private Integer codigoPostal;
-    private String idCiudad = new Ciudad().id;
+    private String idCiudad;
     private String calle;
     @Nullable
     private Integer numeroInterno;
     @Nullable
     private Integer numeroExterno;
-      
-     public Sujeto(){
-           
-     }
  
 }
