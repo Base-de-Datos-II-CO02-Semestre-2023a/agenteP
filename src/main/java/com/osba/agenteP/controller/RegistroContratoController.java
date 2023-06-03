@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.crypto.dsig.XMLObject;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,14 @@ import java.util.Map;
 @ToString
 class IdContrato{
     Integer idContrato = null;
+}
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+class RfcEmpleado{
+    String rfc = null;
 }
 @RestController
 @RequestMapping("/contrato")
@@ -53,5 +62,12 @@ public class RegistroContratoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(data);
 
         }
+    }
+
+   //TODO Agregar la informacion del empleado al reporte
+    @GetMapping("/reportemodificaciones")
+    public String getReporteModificaciones(@RequestBody RfcEmpleado body){
+        String rfc = "'ejemploderfc'";
+        return"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+registroContratosRepository.getReporteModificaciones(rfc);
     }
 }
