@@ -15,8 +15,8 @@ public class RegistroContratosService {
     @Autowired
     private EmpleadoService empleadoService;
 
-    public Optional<RegistroContratos> getContrato(String rfc){
-        Empleado empleado = empleadoService.getEmpleado(rfc).get();
+    public Optional<RegistroContratos> getContrato(Integer id){
+        Empleado empleado = empleadoService.getEmpleado(id);
 
         assert empleado.getContrato() != null;
         return registroContratosRepository.findById(empleado.getContrato());

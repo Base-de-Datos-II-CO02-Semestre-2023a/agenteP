@@ -1,4 +1,4 @@
-package com.osba.agenteP.domain;
+package com.osba.agenteP.model;
 
 public interface EmpleadoProductivo {
     Integer getId();

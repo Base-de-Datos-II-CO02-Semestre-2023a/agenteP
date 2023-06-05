@@ -1,35 +1,22 @@
 package com.osba.agenteP.controller;
 
 import com.osba.agenteP.domain.RegistroContratos;
+import com.osba.agenteP.model.IdContrato;
+import com.osba.agenteP.model.RfcEmpleado;
 import com.osba.agenteP.repository.RegistroContratosRepository;
 import com.osba.agenteP.service.RegistroContratosService;
-import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.crypto.dsig.XMLObject;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-class IdContrato{
-    Integer idContrato = null;
-}
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-class RfcEmpleado{
-    String rfc = null;
-}
+import java.util.NoSuchElementException;
+
+//TODO Manejar los errores
 @RestController
 @RequestMapping("/contrato")
 public class RegistroContratoController {
@@ -40,8 +27,9 @@ public class RegistroContratoController {
     private RegistroContratosService registroContratosService;
     @GetMapping()
     public RegistroContratos contrato(){
-        String rfc = SecurityContextHolder.getContext().getAuthentication().getName();
-        return registroContratosService.getContrato(rfc).get();
+        String idString = SecurityContextHolder.getContext().getAuthentication().getName();
+        Integer id = Integer.parseInt(idString);
+        return registroContratosService.getContrato(id).get();
     }
     @PostMapping()
     public Map<String, Integer> setContrato(@RequestBody RegistroContratos newContrato){
@@ -51,8 +39,9 @@ public class RegistroContratoController {
     @DeleteMapping()
     public ResponseEntity<Map<String, Object>> popContrato(@RequestBody IdContrato body){
         HashMap<String, Object> data = new HashMap<>();
-        Integer idContrato = body.idContrato;
+        Integer idContrato = body.getIdContrato();
         try{
+            registroContratosRepository.findById(idContrato).orElseThrow();
             registroContratosRepository.deleteById(idContrato);
             data.put("mensaje","Se elimino el contrato: "+idContrato);
 
@@ -61,6 +50,9 @@ public class RegistroContratoController {
             data.put("error", "Error interno");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(data);
 
+        }catch (NoSuchElementException e){
+            data.put("error", "No existe el contrato: "+idContrato);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(data);
         }
     }
 
