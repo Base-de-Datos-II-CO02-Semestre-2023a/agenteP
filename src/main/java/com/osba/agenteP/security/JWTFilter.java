@@ -30,14 +30,13 @@ public class JWTFilter extends OncePerRequestFilter {
 
             String token = authHeader.substring(7);
 
-            if(token == null || token.isBlank()) {
-                System.out.println("Token invalido");
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Token invalido en Bearer Header");
+            if(token.isBlank()) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token invalidor");
             } else {
                 try{
-                    String rfc = jwtUtil.validateTokenAndRetrieveSubject(token);
+                    Integer id = jwtUtil.validateTokenAndRetrieveSubject(token);
 
-                    UserDetails userDetails = userDetailService.loadUserByUsername(rfc);
+                    UserDetails userDetails = userDetailService.loadUserByUsername(Integer.toString(id));
 
 
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
@@ -49,7 +48,7 @@ public class JWTFilter extends OncePerRequestFilter {
                         SecurityContextHolder.getContext().setAuthentication(authToken);
                     }
                 }catch (JWTVerificationException e){
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Token invalido");
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token invalido");
                 }
             }
         }

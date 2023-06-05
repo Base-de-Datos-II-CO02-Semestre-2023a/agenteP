@@ -36,7 +36,7 @@ public class SecurityConfig{
                 .and()
                 .authorizeHttpRequests((authorize) -> authorize
                     .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato", "/ciudad/**").authenticated()
 
                     .requestMatchers(HttpMethod.POST,"/empleados", "/auth/register", "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.DELETE, "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
@@ -48,6 +48,7 @@ public class SecurityConfig{
                 .exceptionHandling()
                     .authenticationEntryPoint( (request, response, authException) ->
                         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No autorizado")
+
                 )
                 .and()
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
