@@ -5,6 +5,8 @@ import com.osba.agenteP.domain.RegistroContratos;
 import com.osba.agenteP.exception.EmpleadoSinContratoException;
 import com.osba.agenteP.repository.EmpleadoRepository;
 import com.osba.agenteP.repository.RegistroContratosRepository;
+import com.osba.agenteP.service.EmpleadoService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,46 +17,37 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Optional;
 
 @Component
 public class MyUserDetailService implements UserDetailsService {
     @Autowired private EmpleadoRepository empleadoRepository;
 
+    @Autowired private EmpleadoService empleadoService;
+
     @Autowired private RegistroContratosRepository registroContratosRepository;
 
     /**
      * Este metodo nos regresa un usuario de spring security con los datos del empleado
-     * @param rfc the username identifying the user whose data is required.
+     * @param id the username identifying the user whose data is required.
      * @return
      * @throws UsernameNotFoundException
      */
+    @SneakyThrows
     @Override
-    public UserDetails loadUserByUsername(String rfc) throws UsernameNotFoundException{
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException{
 
-
-        Optional<Empleado> empleadoRes = empleadoRepository.findByRfc(rfc);
+        Optional<Empleado> empleadoRes = empleadoRepository.findById(Integer.parseInt(id));
         if(empleadoRes.isEmpty()){
             throw new UsernameNotFoundException("Empleado no encontrado");
         }
         Empleado empleado = empleadoRes.get();
-        int id = empleado.getId();
-        Integer contratoId = empleado.getContrato();
-        if (contratoId == null){
-            throw new EmpleadoSinContratoException(empleado.getId()+" No es un empleado activo");
-        }
 
-        Optional<RegistroContratos> registroContratosRes = registroContratosRepository.findById(contratoId);
-
-        if (registroContratosRes.isEmpty()){
-            throw new EmpleadoSinContratoException("Empleado "+empleado.getId()+" tiene errores con el contrato, favor de contactar a RH");
-        }
-        RegistroContratos contrato = registroContratosRes.get();
-        System.out.println(contrato.getPuesto());
         return new User(
-                empleado.getId()+"",
+                id ,
                 empleado.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(contrato.getPuesto()))
+                Collections.singletonList(new SimpleGrantedAuthority(empleadoService.getPuesto(Integer.parseInt(id))+""))
         );
     }
 }

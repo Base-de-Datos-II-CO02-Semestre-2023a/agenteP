@@ -18,32 +18,24 @@ public class JWTUtil {
     @Value("${jwt_secret}")
     private String secret;
 
-    public String generateToken(String rfc) throws IllegalArgumentException{
-        Date date = new Date();
-
+    public String generateToken(Integer id) throws IllegalArgumentException{
         return JWT.create()
                 .withSubject("User Details")
-                .withClaim("rfc", rfc)
+                .withClaim("id", id)
+                .withClaim("timestamp", new Date().getTime())
                 .withIssuedAt(new Date())
                 .withIssuer("osba")
                 .sign(Algorithm.HMAC256(secret));
     }
 
-    public String validateTokenAndRetrieveSubject(String token) throws IllegalArgumentException{
+    public Integer validateTokenAndRetrieveSubject(String token) throws IllegalArgumentException{
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(secret))
                 .withSubject("User Details")
                 .withIssuer("osba")
                 .build();
 
-
-    try {
         DecodedJWT decodedJWT = jwtVerifier.verify(token);
-        System.out.println("Decodificado");
-        return decodedJWT.getClaim("rfc").asString();
-    }catch (Exception e){
-        System.out.println(e.getMessage());
-    }
-    return null;
+        return decodedJWT.getClaim("id").asInt();
     }
 
 }

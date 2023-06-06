@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -24,7 +25,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
-    @Autowired private EmpleadoRepository empleadoRepository;
     @Autowired private JWTFilter jwtFilter;
     @Autowired private MyUserDetailService userDetailService;
 
@@ -35,15 +35,20 @@ public class SecurityConfig{
                 .cors()
                 .and()
                 .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/auth/**").permitAll()
-                    .requestMatchers("/empleados").hasAnyAuthority("Recursos_Humanos", "Admin","Finanzas")
+                    .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato", "/ciudad/**", "/lugar/buscar/**").authenticated()
 
-                    .anyRequest().denyAll()
+                    .requestMatchers(HttpMethod.POST,"/empleados", "/auth/register", "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
+                    .requestMatchers(HttpMethod.DELETE, "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
+                    .requestMatchers(HttpMethod.GET, "/empleados", "/empleados/**","/contrato/reportemodificaciones").hasAnyAuthority("Recursos_Humanos", "Admin")
+
+                        .anyRequest().denyAll()
                 )
                 .userDetailsService(userDetailService)
                 .exceptionHandling()
                     .authenticationEntryPoint( (request, response, authException) ->
                         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No autorizado")
+
                 )
                 .and()
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

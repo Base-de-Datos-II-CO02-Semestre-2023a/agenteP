@@ -21,7 +21,7 @@ dependencies {
 	//implementation("org.springframework.session:spring-session-core")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-	runtimeOnly("org.postgresql:postgresql")
+	implementation("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 
