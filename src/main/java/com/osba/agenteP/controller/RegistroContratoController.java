@@ -67,4 +67,9 @@ public class RegistroContratoController {
     public Map <String,Integer> getContratosConcluir(){
         return Collections.singletonMap("contratos", registroContratosRepository.getConcluirContratos());
     }
+
+    @GetMapping("/concluir/{id}")
+    public Map <String,Integer> getContratosConcluirLugar(@PathVariable Integer id){
+        return Collections.singletonMap("contratos ", registroContratosRepository.getConcluirContratosLugar(id));
+    }
 }

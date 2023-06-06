@@ -19,5 +19,8 @@ public interface RegistroContratosRepository extends JpaRepository<RegistroContr
     @Query(value = "SELECT COUNT(*) FROM registro_contratos WHERE ((fecha_fin - current_date) < 14 ) AND (fecha_fin > current_date)", nativeQuery = true)
     public Integer getConcluirContratos();
 
+    @Query(value = "SELECT COUNT(*) FROM registro_contratos WHERE ((fecha_fin - current_date) < 14 ) AND (fecha_fin > current_date) AND (id_lugar = :id_lugar)", nativeQuery = true)
+    public Integer getConcluirContratosLugar(Integer id_lugar);
+
 }
 
