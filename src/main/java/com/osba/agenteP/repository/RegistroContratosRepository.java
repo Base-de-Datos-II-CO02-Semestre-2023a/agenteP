@@ -15,5 +15,9 @@ public interface RegistroContratosRepository extends JpaRepository<RegistroContr
     Optional<RegistroContratos>  findById(int id);
     @Query(value = "select * from cast ((select * from query_to_xml( 'select * from modificacion_contrato where id_contrato = (select contrato from empleado where rfc = '||:rfc||')',true,false,'')) as varchar)", nativeQuery = true)
     Object getReporteModificaciones( @Param(value = "rfc") String ejemplo);
+
+    @Query(value = "SELECT COUNT(*) FROM registro_contratos WHERE ((fecha_fin - current_date) < 14 ) AND (fecha_fin > current_date)", nativeQuery = true)
+    public Integer getConcluirContratos();
+
 }
 
