@@ -39,4 +39,7 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
             "lower(nombre) like('%'||lower(:query)||'%') or " +
             "lower(correo) like('%'||lower(:query)||'%'))",nativeQuery = true)
     public List<EmpleadoEncontrado> findEmpleadosByRfcOrNombreOrCorreo(String query);
+
+    @Query(nativeQuery = true, value = "select count(*) from registro_vacaciones where fecha_fin > current_date and fecha_inicio < current_date")
+    public Integer contarEmpleadosVacaciones();
 }

@@ -36,7 +36,7 @@ public class SecurityConfig{
                 .and()
                 .authorizeHttpRequests((authorize) -> authorize
                     .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato", "/ciudad/**").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato", "/ciudad/**", "/lugar/buscar/**").authenticated()
 
                     .requestMatchers(HttpMethod.POST,"/empleados", "/auth/register", "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.DELETE, "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")

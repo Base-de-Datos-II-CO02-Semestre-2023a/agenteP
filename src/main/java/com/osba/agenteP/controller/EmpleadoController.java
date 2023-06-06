@@ -12,7 +12,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/empleados")
@@ -57,5 +59,10 @@ public class EmpleadoController {
     @GetMapping("/buscar/{query}")
     public List<EmpleadoEncontrado> buscarEmpleadosPorRFC(@PathVariable String query){
         return  empleadoRepository.findEmpleadosByRfcOrNombreOrCorreo(query);
+    }
+
+    @GetMapping("/vacaciones/contar")
+    public Map<String, Integer> contarEmpleadosDeVacaciones(){
+        return Collections.singletonMap("empleados",empleadoRepository.contarEmpleadosVacaciones());
     }
 }

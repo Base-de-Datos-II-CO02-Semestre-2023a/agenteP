@@ -49,6 +49,7 @@ public class AuthController {
                 empleado = empleadoRepository.save(empleado);
                 HashMap<String, Object> data = new HashMap<>();
                 data.put("id", empleado.getId());
+                data.put("nombre", empleado.getNombre());
                 return data;
         } catch (DataIntegrityViolationException e){
             PSQLException err = (PSQLException) e.getRootCause();
@@ -73,7 +74,6 @@ public class AuthController {
     @ResponseBody()
     public Map<String, Object> iniciarSesion(@RequestBody LoginCredentials body) throws Exception {
         Integer id = empleadoRepository.findIdByRfc(body.getRfc());
-        System.out.println(id);
         try{
             UsernamePasswordAuthenticationToken authInputToken =
                     new UsernamePasswordAuthenticationToken(

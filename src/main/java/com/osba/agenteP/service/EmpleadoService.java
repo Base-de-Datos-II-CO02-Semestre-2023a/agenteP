@@ -41,7 +41,7 @@ public class EmpleadoService {
             throw new EmpleadoSinContratoException("Empleado "+empleado.getRfc()+" tiene errores con el contrato, favor de contactar a RH");
         }
         RegistroContratos contrato = registroContratosRes.get();
-        if ( contrato.getFechaFin() != null && contrato.getFechaFin().after(new Date())){
+        if ( contrato.getFechaFin() != null && contrato.getFechaFin().before(new Date())){
             throw new EmpleadoSinContratoException("Al empleado "+empleado.getNombre()+" ya se le acabó el contrato, favor de contactar a RH");
         }
 
