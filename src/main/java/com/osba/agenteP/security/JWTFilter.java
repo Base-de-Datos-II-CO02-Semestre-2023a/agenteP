@@ -27,19 +27,16 @@ public class JWTFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader("Authorization");
         if(authHeader != null && !authHeader.isBlank() && authHeader.startsWith("Bearer ")){
 
-            System.out.println("Hay auth");
+
             String token = authHeader.substring(7);
-            System.out.println(token);
-            if(token == null || token.isBlank()) {
-                System.out.println("Token invalido");
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Token invalido en Bearer Header");
+
+            if(token.isBlank()) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token invalidor");
             } else {
                 try{
-                    String rfc = jwtUtil.validateTokenAndRetrieveSubject(token);
-                    System.out.println(rfc);
-                    UserDetails userDetails = userDetailService.loadUserByUsername(rfc);
+                    Integer id = jwtUtil.validateTokenAndRetrieveSubject(token);
 
-                    System.out.println(userDetails.getUsername());
+                    UserDetails userDetails = userDetailService.loadUserByUsername(Integer.toString(id));
 
 
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
@@ -51,7 +48,7 @@ public class JWTFilter extends OncePerRequestFilter {
                         SecurityContextHolder.getContext().setAuthentication(authToken);
                     }
                 }catch (JWTVerificationException e){
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Token invalido");
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token invalido");
                 }
             }
         }

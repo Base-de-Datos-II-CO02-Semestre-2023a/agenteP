@@ -1,15 +1,20 @@
 package com.osba.agenteP.controller;
 
-import com.osba.agenteP.domain.EmpleadoProductivo;
+import com.osba.agenteP.model.EmpleadoEncontrado;
+import com.osba.agenteP.model.EmpleadoProductivo;
 import com.osba.agenteP.repository.EmpleadoRepository;
 import com.osba.agenteP.service.EmpleadoService;
 import com.osba.agenteP.domain.Empleado;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/empleados")
@@ -21,18 +26,20 @@ public class EmpleadoController {
     private EmpleadoRepository empleadoRepository;
 
     @GetMapping()
-    public List<Empleado> empleado(){
-        System.out.println("Hola");
+    public List<EmpleadoEncontrado> empleado(){
 
-        return empleadoService.getEmpleados();
+        return empleadoRepository.findEmpleadosByRfcOrNombreOrCorreo("");
     }
 
 
     @GetMapping("/userdata")
     private Empleado getUserData(){
-        String rfc = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(rfc);
-        return empleadoService.getEmpleado(rfc).get();
+        String id = SecurityContextHolder.getContext().getAuthentication().getName();
+        try {
+            return empleadoService.getEmpleado(Integer.parseInt(id));
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No se encontró la información", e);
+        }
     }
     @GetMapping("/productivos")
     public List<EmpleadoProductivo> getProductivos(){
@@ -43,9 +50,19 @@ public class EmpleadoController {
         return empleadoRepository.obtenerMenosProductivos();
     }
 
-    @GetMapping("/{rfc}")
-    public Empleado getEmpleadoByRfc(@PathVariable String rfc){
+    @GetMapping("/{idString}")
+    public Empleado getEmpleadoById(@PathVariable String idString){
+        Integer id = Integer.parseInt(idString);
+        return empleadoRepository.findEmpleadoById(id).get();
+    }
 
-        return empleadoRepository.findByRfc(rfc).get();
+    @GetMapping("/buscar/{query}")
+    public List<EmpleadoEncontrado> buscarEmpleadosPorRFC(@PathVariable String query){
+        return  empleadoRepository.findEmpleadosByRfcOrNombreOrCorreo(query);
+    }
+
+    @GetMapping("/vacaciones/contar")
+    public Map<String, Integer> contarEmpleadosDeVacaciones(){
+        return Collections.singletonMap("empleados",empleadoRepository.contarEmpleadosVacaciones());
     }
 }

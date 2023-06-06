@@ -23,12 +23,12 @@ public class EmpleadoService {
         return empleadoRepository.findEmpleadosActivos();
     }
 
-    public Optional<Empleado> getEmpleado(String rfc){
-        return empleadoRepository.findByRfc(rfc);
+    public Empleado getEmpleado(Integer id){
+        return empleadoRepository.findEmpleadoById(id).get();
     }
 
-    public TipoPuesto getPuesto(String rfc){
-        Empleado empleado = getEmpleado(rfc).get();
+    public TipoPuesto getPuesto(Integer id) throws EmpleadoSinContratoException {
+        Empleado empleado = getEmpleado(id);
 
         Integer contratoId = empleado.getContrato();
         if (contratoId == null){
@@ -38,11 +38,11 @@ public class EmpleadoService {
         Optional<RegistroContratos> registroContratosRes = registroContratosRepository.findById(contratoId);
 
         if (registroContratosRes.isEmpty()){
-            throw new EmpleadoSinContratoException("Empleado "+rfc+" tiene errores con el contrato, favor de contactar a RH");
+            throw new EmpleadoSinContratoException("Empleado "+empleado.getRfc()+" tiene errores con el contrato, favor de contactar a RH");
         }
         RegistroContratos contrato = registroContratosRes.get();
-        if ( contrato.getFechaFin() != null && contrato.getFechaFin().after(new Date())){
-            throw new EmpleadoSinContratoException("Al empleado "+rfc+" ya se le acabó el contrato, favor de contactar a RH");
+        if ( contrato.getFechaFin() != null && contrato.getFechaFin().before(new Date())){
+            throw new EmpleadoSinContratoException("Al empleado "+empleado.getNombre()+" ya se le acabó el contrato, favor de contactar a RH");
         }
 
         return contrato.getPuesto();

@@ -1,18 +1,13 @@
 package com.osba.agenteP.domain;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.math.BigInteger;
-import java.util.Date;
 
 @Entity
-@Table(name = "CAT_PROD_SER")
+@Table(name = "cat_prod_serv")
 @Getter
 @Setter
 @ToString

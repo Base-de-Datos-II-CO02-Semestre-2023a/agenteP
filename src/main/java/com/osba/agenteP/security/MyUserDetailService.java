@@ -6,6 +6,7 @@ import com.osba.agenteP.exception.EmpleadoSinContratoException;
 import com.osba.agenteP.repository.EmpleadoRepository;
 import com.osba.agenteP.repository.RegistroContratosRepository;
 import com.osba.agenteP.service.EmpleadoService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -29,24 +30,24 @@ public class MyUserDetailService implements UserDetailsService {
 
     /**
      * Este metodo nos regresa un usuario de spring security con los datos del empleado
-     * @param rfc the username identifying the user whose data is required.
+     * @param id the username identifying the user whose data is required.
      * @return
      * @throws UsernameNotFoundException
      */
+    @SneakyThrows
     @Override
-    public UserDetails loadUserByUsername(String rfc) throws UsernameNotFoundException{
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException{
 
-
-        Optional<Empleado> empleadoRes = empleadoRepository.findByRfc(rfc);
+        Optional<Empleado> empleadoRes = empleadoRepository.findById(Integer.parseInt(id));
         if(empleadoRes.isEmpty()){
             throw new UsernameNotFoundException("Empleado no encontrado");
         }
         Empleado empleado = empleadoRes.get();
 
         return new User(
-                rfc ,
+                id ,
                 empleado.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(empleadoService.getPuesto(rfc)+""))
+                Collections.singletonList(new SimpleGrantedAuthority(empleadoService.getPuesto(Integer.parseInt(id))+""))
         );
     }
 }
