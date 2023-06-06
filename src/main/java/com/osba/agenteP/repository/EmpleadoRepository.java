@@ -42,4 +42,8 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
 
     @Query(nativeQuery = true, value = "select count(*) from registro_vacaciones where fecha_fin > current_date and fecha_inicio < current_date")
     public Integer contarEmpleadosVacaciones();
+
+    //Queda pendiente el where contrato is not null
+    @Query(value = "SELECT AVG(indice_productividad) FROM empleado", nativeQuery = true)
+    public Double getPromedioProductividad();
 }

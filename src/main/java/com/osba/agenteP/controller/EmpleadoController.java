@@ -65,4 +65,9 @@ public class EmpleadoController {
     public Map<String, Integer> contarEmpleadosDeVacaciones(){
         return Collections.singletonMap("empleados",empleadoRepository.contarEmpleadosVacaciones());
     }
+
+    @GetMapping("/productividad/promedio")
+    public Map<String,Double> getPromedioProductividad(){
+        return Collections.singletonMap("promedio general ",empleadoRepository.getPromedioProductividad());
+    }
 }
