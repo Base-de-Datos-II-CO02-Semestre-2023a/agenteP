@@ -40,7 +40,7 @@ public class SecurityConfig{
 
                     .requestMatchers(HttpMethod.POST,"/empleados", "/auth/register", "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.DELETE, "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
-                    .requestMatchers(HttpMethod.GET, "/empleados", "/empleados/**","/contrato/reportemodificaciones").hasAnyAuthority("Recursos_Humanos", "Admin")
+                    .requestMatchers(HttpMethod.GET, "/empleados", "/empleados/**","/contrato/reportemodificaciones","/contrato/concluir").hasAnyAuthority("Recursos_Humanos", "Admin")
 
                         .anyRequest().denyAll()
                 )

@@ -21,4 +21,6 @@ public class RegistroContratosService {
         assert empleado.getContrato() != null;
         return registroContratosRepository.findById(empleado.getContrato());
     }
+
+
 }

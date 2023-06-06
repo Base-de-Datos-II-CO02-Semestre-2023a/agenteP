@@ -62,4 +62,9 @@ public class RegistroContratoController {
         String rfc = "'ejemploderfc'";
         return"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+registroContratosRepository.getReporteModificaciones(rfc);
     }
+
+    @GetMapping("/concluir")
+    public Map <String,Integer> getContratosConcluir(){
+        return Collections.singletonMap("contratos", registroContratosRepository.getConcluirContratos());
+    }
 }
