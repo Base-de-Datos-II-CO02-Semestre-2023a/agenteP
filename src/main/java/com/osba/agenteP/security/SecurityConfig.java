@@ -38,12 +38,17 @@ public class SecurityConfig{
                     .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
                     .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato", "/ciudad/**", "/lugar/buscar/**").authenticated()
 
+
                     .requestMatchers(HttpMethod.POST,"/empleados", "/auth/register", "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.DELETE, "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
+                    .requestMatchers(HttpMethod.PATCH, "/empleados/despedir/**").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.GET, "/empleados", "/empleados/**","/contrato/reportemodificaciones","/contrato/concluir","/contrato/concluir/{id}","/productividad/promedio").hasAnyAuthority("Recursos_Humanos", "Admin")
 
+
                         .anyRequest().denyAll()
+
                 )
+
                 .userDetailsService(userDetailService)
                 .exceptionHandling()
                     .authenticationEntryPoint( (request, response, authException) ->
@@ -58,7 +63,6 @@ public class SecurityConfig{
 
         return http.build();
     }
-
 
 
     @Bean

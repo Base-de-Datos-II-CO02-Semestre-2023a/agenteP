@@ -4,7 +4,9 @@ import com.osba.agenteP.domain.Empleado;
 import com.osba.agenteP.domain.RegistroContratos;
 import com.osba.agenteP.model.EmpleadoEncontrado;
 import com.osba.agenteP.model.EmpleadoProductivo;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -46,4 +48,12 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
     //Queda pendiente el where contrato is not null
     @Query(value = "SELECT AVG(indice_productividad) FROM empleado", nativeQuery = true)
     public Double getPromedioProductividad();
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE empleado SET contrato = null WHERE id = :id AND (contrato is not null)", nativeQuery = true)
+    public void despedirEmpleado(Integer id);
+
+    @Query(value = "SELECT * FROM empleado WHERE contrato is not null AND (id = :id)", nativeQuery = true)
+    public Optional<Empleado> findEmpleadobyIdContrato(Integer id);
 }

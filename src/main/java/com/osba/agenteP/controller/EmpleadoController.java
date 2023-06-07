@@ -70,4 +70,18 @@ public class EmpleadoController {
     public Map<String,Double> getPromedioProductividad(){
         return Collections.singletonMap("promedio general ",empleadoRepository.getPromedioProductividad());
     }
+
+    @PatchMapping("/despedir/{id}")
+    public Map<String,Boolean> despedirEmpleado(@PathVariable Integer id){
+        boolean isFired = empleadoService.despedirEmpleado(id);
+
+        if (isFired) {
+            return Collections.singletonMap("Despedio", true);
+        }
+        else {
+            return Collections.singletonMap("Despedido", false);
+        }
+    }
+
+
 }

@@ -49,5 +49,18 @@ public class EmpleadoService {
 
     }
 
+    public Boolean despedirEmpleado(Integer id){
+
+    Optional<Empleado> empleado = empleadoRepository.findEmpleadobyIdContrato(id);
+
+    if(empleado.isPresent()){
+        empleadoRepository.despedirEmpleado(id);
+        return true;
+    }
+    else {
+        return false;
+    }
+
+    }
 
 }
