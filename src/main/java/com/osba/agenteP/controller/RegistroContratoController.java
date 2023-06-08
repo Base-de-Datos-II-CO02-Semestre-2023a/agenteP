@@ -1,6 +1,7 @@
 package com.osba.agenteP.controller;
 
 import com.osba.agenteP.domain.RegistroContratos;
+import com.osba.agenteP.model.CambioLugar;
 import com.osba.agenteP.model.IdContrato;
 import com.osba.agenteP.model.RfcEmpleado;
 import com.osba.agenteP.repository.RegistroContratosRepository;
@@ -71,6 +72,18 @@ public class RegistroContratoController {
     @GetMapping("/concluir/{id}")
     public Map <String,Integer> getContratosConcluirLugar(@PathVariable Integer id){
         return Collections.singletonMap("contratos ", registroContratosRepository.getConcluirContratosLugar(id));
+    }
+
+    @GetMapping("/vacaciones/{id}")
+    public Map<String,Integer> getVacacionesEmpleado(@PathVariable Integer id){
+        return Collections.singletonMap("vacaciones", registroContratosRepository.getVacacionesbyId(id));
+    }
+
+    @PatchMapping("/cambiarlugar")
+    public Map<String,Boolean> cambiarLugar(@RequestBody CambioLugar body){
+
+       registroContratosRepository.moverEmpleadoSucursal(body.getId_empleado(),body.getId_lugar());
+       return Collections.singletonMap("cambio",true);
     }
 
 
