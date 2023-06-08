@@ -1,5 +1,6 @@
 package com.osba.agenteP.controller;
 
+import com.osba.agenteP.domain.Falta;
 import com.osba.agenteP.model.*;
 import com.osba.agenteP.repository.EmpleadoRepository;
 import com.osba.agenteP.service.EmpleadoService;
@@ -95,7 +96,8 @@ public class EmpleadoController {
 
     @PostMapping("/falta")
     public Map<String,Boolean> falta (@RequestBody Falta falta){
-        empleadoRepository.registrarFalta(falta.getId_empleado(),falta.getTipo(),falta.getFecha(),falta.getImpactoProductividad());
+        System.out.println(falta);
+        empleadoRepository.registrarFalta(falta.getIdEmpleado(),falta.getTipo().toString(),falta.getFecha(),falta.getImpactoProductividad(),falta.getDescripcion());
         return Collections.singletonMap("Falta",true);
 
     }
