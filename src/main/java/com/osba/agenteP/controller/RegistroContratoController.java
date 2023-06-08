@@ -73,5 +73,10 @@ public class RegistroContratoController {
         return Collections.singletonMap("contratos ", registroContratosRepository.getConcluirContratosLugar(id));
     }
 
+    @GetMapping("/vacaciones/{id}")
+    public Map<String,Integer> getVacacionesEmpleado(@PathVariable Integer id){
+        return Collections.singletonMap("vacaciones", registroContratosRepository.getVacacionesbyId(id));
+    }
+
 
 }
