@@ -12,25 +12,35 @@ Falta
 - Finanzas Inicio General y Lugares General
 	
 
+
+
+
 BackEnd
 - EndPoints de sugerencia en los campos de ingreso
-	- Contratos proximos a concluir (sentencia de sql) <- 
+	- >>>>>>>Contratos proximos a concluir (sentencia de sql) <- 
 	- Promedio de productividad general (todos los activos y su productividad) <-
-	- Transferencia de empleado (moverlo de sucursal) <-
+	->>>>>>. Transferencia de empleado (moverlo de sucursal) <-
 	- Modificar contrato
-	- Registrar falta <-
+	->>>>>.  Registrar falta <-
 	- Crear Objetivo 
-	- Despedir (campo contrato en empleado = nulo) <-
+	->>>>>> Despedir (campo contrato en empleado = nulo) <-
 	- Consultas los obejtivos de un empleado y retornas el promedio de avance
 	- Inasistencias (faltas de tipo inasistencias) 
-	- Dias para el fin de contrato (consultar fecha fin de contrato) <-
-	- Dias de vacaciones <-
-	- Faltas (conteo de faltas que no sean de tipo inasistencias) <- 
+	->>>>>>>. Dias para el fin de contrato (consultar fecha fin de contrato) <-
+	->>>>>>>. Dias de vacaciones <-
+	->>>>>>>.  Faltas (conteo de faltas que no sean de tipo inasistencias) <- 
 	- EndoPoint para la informacion de los lugares (sucursales) empleados y productividad (contar en ambos campos)
 	- Endpoint de lista de empleados dado el lugar (tabla de empleados pero filtrando el lugar)
 	- EndPoints de sugerencia en los campos de ingreso
-	- Contratos proximos a concluir (sentencia de sql) por lugar <-
+	->>>>>>>>. Contratos proximos a concluir (sentencia de sql) por lugar <-
 	- Promedio de productividad general (todos los activos y su productividad) por lugar
+
+
+
+
+
+
+
 
 INVENTARIO 
 	- Uso de almacenamiento (datamart)
