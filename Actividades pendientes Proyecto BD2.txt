@@ -1,0 +1,84 @@
+Front End
+Funcionalidad de los compoenentes terminada
+Falta
+- Construir pantallas de vista de usuario
+- Acciones de los objetos
+- Overlate (formularios de inserciones)
+- Validaciones de datos (fecha)
+- Pantallas importsntes
+	- RH (Casi temrinado falta backend)
+- Priodidad: Finanzas e Inventarios
+- Inventario 4 vistas
+- Finanzas Inicio General y Lugares General
+	
+
+
+
+
+BackEnd
+- EndPoints de sugerencia en los campos de ingreso
+	- >>>>>>>Contratos proximos a concluir (sentencia de sql) <- 
+	
+
+	- Promedio de productividad general (todos los activos y su productividad) <-
+	
+
+	->>>>>>. Transferencia de empleado (moverlo de sucursal) <-
+	
+
+	- Modificar contrato
+	
+
+	->>>>>.  Registrar falta <-
+	
+
+	- Crear Objetivo 
+	
+
+	->>>>>> Despedir (campo contrato en empleado = nulo) <-
+	
+
+	- Consultas los obejtivos de un empleado y retornas el promedio de avance
+	- Inasistencias (faltas de tipo inasistencias) 
+	
+
+	->>>>>>>. Dias para el fin de contrato (consultar fecha fin de contrato) <-
+	->>>>>>>. Dias de vacaciones <-
+	->>>>>>>.  Faltas (conteo de faltas que no sean de tipo inasistencias) <- 
+	
+
+	- EndoPoint para la informacion de los lugares (sucursales) empleados y productividad (contar en ambos campos)
+	- Endpoint de lista de empleados dado el lugar (tabla de empleados pero filtrando el lugar)
+	- EndPoints de sugerencia en los campos de ingreso
+	
+
+	->>>>>>>>. Contratos proximos a concluir (sentencia de sql) por lugar <-
+	
+
+	- Promedio de productividad general (todos los activos y su productividad) por lugar
+
+
+
+
+
+
+
+
+INVENTARIO 
+	- Uso de almacenamiento (datamart)
+	- Reabastecimientos recomendados (conteo de articulos en el inventario proximos a cero)
+	- Articulos distintos en stock
+	- Espacio usado (query compuesto, usando tablas inventario y lugares, checar almacenamiento maximo total)
+	- Productos proximos a caducar (count de productos a caducar en inventario)
+
+INVENTARIO POR LUGAR 
+	- Suma por articulos en base al lugar (filtrar en articulo y en lugar)
+	- Descrpcion del los articulos especificos dependiendo el lugar (posible datamart)
+
+REABASTECIMIENTO
+	- Crear movimiento de reabasticmiento (solo datos no nulos)
+	- Agregar concdepto al reabastecimiento (retorna el id del reabastecimiento)
+	- Sugerencia de productos (de acuerdo al nombre de un producto en inventario general)
+	- Regrese Datos de un proveedor dado especifico
+	- Buscar proveedor existente 
+	- Agregar proveedor y cliente (mismo codigo cambia solo el tipo)
