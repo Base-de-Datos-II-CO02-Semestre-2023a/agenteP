@@ -1,7 +1,6 @@
 package com.osba.agenteP.repository;
 
 import com.osba.agenteP.domain.Empleado;
-import com.osba.agenteP.domain.RegistroContratos;
 import com.osba.agenteP.model.EmpleadoEncontrado;
 import com.osba.agenteP.model.EmpleadoInfo;
 import com.osba.agenteP.model.EmpleadoProductivo;
