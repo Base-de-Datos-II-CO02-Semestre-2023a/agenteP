@@ -84,4 +84,6 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
     @Query(value = "INSERT INTO falta VALUES (:id_empleado, :tipo, :fecha, :impactoProductividad)", nativeQuery = true)
     public void registrarFalta(@Param("id_empleado") Integer id_empleado, @Param("tipo") TipoFalta tipo, @Param("fecha") Date fecha, @Param("impactoProductividad") Double impactoProductividad);
 
+
+
 }
