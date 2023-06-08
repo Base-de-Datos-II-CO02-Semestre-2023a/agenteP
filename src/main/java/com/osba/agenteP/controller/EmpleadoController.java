@@ -1,7 +1,9 @@
 package com.osba.agenteP.controller;
 
 import com.osba.agenteP.model.EmpleadoEncontrado;
+import com.osba.agenteP.model.EmpleadoInfo;
 import com.osba.agenteP.model.EmpleadoProductivo;
+import com.osba.agenteP.model.ProductividadMes;
 import com.osba.agenteP.repository.EmpleadoRepository;
 import com.osba.agenteP.service.EmpleadoService;
 import com.osba.agenteP.domain.Empleado;
@@ -51,9 +53,9 @@ public class EmpleadoController {
     }
 
     @GetMapping("/{idString}")
-    public Empleado getEmpleadoById(@PathVariable String idString){
+    public EmpleadoInfo getEmpleadoById(@PathVariable String idString){
         Integer id = Integer.parseInt(idString);
-        return empleadoRepository.findEmpleadoById(id).get();
+        return empleadoRepository.getEmpleadoInfo(id);
     }
 
     @GetMapping("/buscar/{query}")
@@ -82,6 +84,18 @@ public class EmpleadoController {
             return Collections.singletonMap("Despedido", false);
         }
     }
+
+    @GetMapping("/productividad/{id}")
+    public List<ProductividadMes> productividadMes(@PathVariable Integer id){
+        return empleadoRepository.getHistorialProductividad(id);
+    }
+
+    @GetMapping("/productividad")
+    public List<ProductividadMes> productividadMes(){
+        String id = SecurityContextHolder.getContext().getAuthentication().getName();
+        return empleadoRepository.getHistorialProductividad(Integer.parseInt(id));
+    }
+
 
 
 }

@@ -3,7 +3,9 @@ package com.osba.agenteP.repository;
 import com.osba.agenteP.domain.Empleado;
 import com.osba.agenteP.domain.RegistroContratos;
 import com.osba.agenteP.model.EmpleadoEncontrado;
+import com.osba.agenteP.model.EmpleadoInfo;
 import com.osba.agenteP.model.EmpleadoProductivo;
+import com.osba.agenteP.model.ProductividadMes;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -56,4 +58,23 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
 
     @Query(value = "SELECT * FROM empleado WHERE contrato is not null AND (id = :id)", nativeQuery = true)
     public Optional<Empleado> findEmpleadobyIdContrato(Integer id);
+
+    @Query(value = "select avg(f.productividad) as productividad, d.mes as mes from fact_productividad f " +
+            "    inner join dim_tiempo d on f.id_tiempo = d.id " +
+            "where id_empleado = :id " +
+            "group by mes;", nativeQuery = true)
+    public List<ProductividadMes> getHistorialProductividad(Integer id);
+
+    @Query(nativeQuery = true, value = "select e.id, e.nombre, e.rfc, e.nss, e.telefono, " +
+            "rc.puesto, l.nombre as nombreLugar, " +
+            "e.calle||ifnullignore(' #'||e.numero_externo)||ifnullignore(' int.'||e.numero_interno)||', '||c.nombre||', '||c.entidad||', '||c.pais as direccion, " +
+            "e.correo, rc.salario, e.indice_productividad as indiceProductividad, current_date - e.fecha_de_ingreso as diasInicio, rc.fecha_fin - current_date as diasFin from empleado e " +
+            "left join control_asistencia ca on e.id = ca.id_empleado " +
+            "left join registro_contratos rc on e.contrato = rc.id " +
+            "left join lugar l on rc.id_lugar = l.id " +
+            "left join ciudad c on e.id_ciudad = c.id " +
+            "where e.id = :id")
+
+
+    public EmpleadoInfo getEmpleadoInfo(Integer id);
 }
