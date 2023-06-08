@@ -39,7 +39,7 @@ public class SecurityConfig{
                     .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato", "/ciudad/**", "/lugar/buscar/**", "/empleados/productividad").authenticated()
 
 
-                    .requestMatchers(HttpMethod.POST,"/empleados", "/auth/register", "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
+                    .requestMatchers(HttpMethod.POST,"/empleados", "/auth/register", "/contrato","/empleados/falta").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.DELETE, "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.PATCH, "/empleados/despedir/**").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.GET, "/empleados", "/empleados/**","/contrato/reportemodificaciones","/contrato/concluir","/contrato/concluir/{id}","/productividad/promedio").hasAnyAuthority("Recursos_Humanos", "Admin")

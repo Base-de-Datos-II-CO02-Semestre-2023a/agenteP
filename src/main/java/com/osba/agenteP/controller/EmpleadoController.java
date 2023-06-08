@@ -1,9 +1,6 @@
 package com.osba.agenteP.controller;
 
-import com.osba.agenteP.model.EmpleadoEncontrado;
-import com.osba.agenteP.model.EmpleadoInfo;
-import com.osba.agenteP.model.EmpleadoProductivo;
-import com.osba.agenteP.model.ProductividadMes;
+import com.osba.agenteP.model.*;
 import com.osba.agenteP.repository.EmpleadoRepository;
 import com.osba.agenteP.service.EmpleadoService;
 import com.osba.agenteP.domain.Empleado;
@@ -94,6 +91,13 @@ public class EmpleadoController {
     public List<ProductividadMes> productividadMes(){
         String id = SecurityContextHolder.getContext().getAuthentication().getName();
         return empleadoRepository.getHistorialProductividad(Integer.parseInt(id));
+    }
+
+    @PostMapping("/falta")
+    public Map<String,Boolean> falta (@RequestBody Falta falta){
+        empleadoRepository.registrarFalta(falta.getId_empleado(),falta.getTipo(),falta.getFecha(),falta.getImpactoProductividad());
+        return Collections.singletonMap("Falta",true);
+
     }
 
 
