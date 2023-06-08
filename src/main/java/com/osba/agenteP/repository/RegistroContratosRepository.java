@@ -1,16 +1,12 @@
 package com.osba.agenteP.repository;
 
-import com.osba.agenteP.domain.Empleado;
 import com.osba.agenteP.domain.RegistroContratos;
-import jakarta.persistence.StoredProcedureParameter;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javax.swing.text.html.Option;
-import javax.xml.crypto.dsig.XMLObject;
 import java.util.Optional;
 
 public interface RegistroContratosRepository extends JpaRepository<RegistroContratos, Integer> {
@@ -32,8 +28,6 @@ public interface RegistroContratosRepository extends JpaRepository<RegistroContr
     @Modifying
     @Query(value ="UPDATE registro_contratos SET id_lugar = :id_lugar WHERE id_empleado = :id_empleado", nativeQuery = true)
     public void moverEmpleadoSucursal(Integer id_empleado,Integer id_lugar);
-
-
 
 
 }
