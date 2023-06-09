@@ -48,7 +48,7 @@ BackEnd
 	
 
 	- EndoPoint para la informacion de los lugares (sucursales) empleados y productividad (contar en ambos campos)
-	- Endpoint de lista de empleados dado el lugar (tabla de empleados pero filtrando el lugar)
+	->>>>>>>> Endpoint de lista de empleados dado el lugar (tabla de empleados pero filtrando el lugar)
 	- EndPoints de sugerencia en los campos de ingreso
 	
 
@@ -56,7 +56,6 @@ BackEnd
 	
 
 	->>>>>>>Promedio de productividad general (todos los activos y su productividad) por lugar
-
 
 
 INVENTARIO 
