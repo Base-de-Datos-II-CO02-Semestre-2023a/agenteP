@@ -39,10 +39,10 @@ BackEnd
 	
 
 	->>>>>>> Consultas los obejtivos de un empleado y retornas el promedio de avance
-	->>>>>>> Inasistencias (faltas de tipo inasistencias) <-
+	-CHECAR>>>>> Inasistencias (faltas de tipo inasistencias) <-
 	
 
-	->>>>>>>. Dias para el fin de contrato (consultar fecha fin de contrato) <-
+	-CHECAR>>>>. Dias para el fin de contrato (consultar fecha fin de contrato) <-
 	->>>>>>>. Dias de vacaciones <-
 	->>>>>>>.  Faltas (conteo de faltas que no sean de tipo inasistencias) <- 
 	
@@ -55,7 +55,7 @@ BackEnd
 	->>>>>>>>. Contratos proximos a concluir (sentencia de sql) por lugar <-
 	
 
-	- Promedio de productividad general (todos los activos y su productividad) por lugar
+	- CHECAR>>>>>> Promedio de productividad general (todos los activos y su productividad) por lugar
 
 
 
