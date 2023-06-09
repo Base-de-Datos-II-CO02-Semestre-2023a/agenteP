@@ -64,15 +64,18 @@ BackEnd
 	- Endpoint de lista de empleados dado el lugar (tabla de empleados pero filtrando el lugar)
 	
 	- Contratos proximos a concluir (sentencia de sql) por lugar <-
+	
+	- Productos proximos a caducar (count de productos a caducar en inventario)
+	
+	- Reabastecimientos recomendados (conteo de articulos en el inventario proximos a cero)
 
 
 
 INVENTARIO 
 	- Uso de almacenamiento (datamart)
-	- Reabastecimientos recomendados (conteo de articulos en el inventario proximos a cero)
 	- Articulos distintos en stock
 	- Espacio usado (query compuesto, usando tablas inventario y lugares, checar almacenamiento maximo total)
-	- Productos proximos a caducar (count de productos a caducar en inventario)
+	
 
 INVENTARIO POR LUGAR 
 	- Suma por articulos en base al lugar (filtrar en articulo y en lugar)
