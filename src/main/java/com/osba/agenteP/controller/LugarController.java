@@ -1,5 +1,6 @@
 package com.osba.agenteP.controller;
 
+import com.osba.agenteP.model.BuscarLugar;
 import com.osba.agenteP.model.BusquedaLugar;
 import com.osba.agenteP.model.OptionLugar;
 import com.osba.agenteP.repository.LugarRepository;
@@ -14,8 +15,17 @@ public class LugarController {
     @Autowired
     private LugarRepository lugarRepository;
     @CrossOrigin
-    @GetMapping("/buscar/{query}")
+    @GetMapping("/suggest/{query}")
     private List<OptionLugar> suggestLugar(@PathVariable String query) {
         return lugarRepository.lugarSuggestions(query);
+    }
+
+    @GetMapping("buscar/rh/{query}")
+    private List<BuscarLugar> searchRH(@PathVariable String query){
+        return lugarRepository.searchRH(query);
+    }
+    @GetMapping("buscar/rh")
+    private List<BuscarLugar> searchAllRH(){
+        return lugarRepository.searchAllRh();
     }
 }

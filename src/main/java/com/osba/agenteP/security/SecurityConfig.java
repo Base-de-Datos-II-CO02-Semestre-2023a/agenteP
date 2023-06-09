@@ -36,13 +36,13 @@ public class SecurityConfig{
                 .and()
                 .authorizeHttpRequests((authorize) -> authorize
                     .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato", "/ciudad/**", "/lugar/buscar/**", "/empleados/productividad").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/empleados/userdata", "/contrato", "/ciudad/**","/lugar/suggest/**", "/empleados/productividad").authenticated()
 
 
                     .requestMatchers(HttpMethod.POST,"/empleados", "/auth/register", "/contrato","/empleados/falta").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.DELETE, "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.PATCH, "/empleados/despedir/**","/contrato/cambiarlugar").hasAnyAuthority("Recursos_Humanos", "Admin")
-                    .requestMatchers(HttpMethod.GET, "/empleados", "/empleados/**","/contrato/reportemodificaciones","/contrato/concluir","/contrato/concluir/{id}","/productividad/promedio","/contrato/vacaciones/**").hasAnyAuthority("Recursos_Humanos", "Admin")
+                    .requestMatchers(HttpMethod.GET, "/empleados", "/empleados/**","/contrato/reportemodificaciones","/contrato/concluir","/contrato/concluir/{id}","/productividad/promedio","/contrato/vacaciones/**","/lugar/buscar/rh/**").hasAnyAuthority("Recursos_Humanos", "Admin")
 
 
                         .anyRequest().denyAll()
