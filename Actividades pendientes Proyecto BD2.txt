@@ -17,46 +17,53 @@ Falta
 
 BackEnd
 - EndPoints de sugerencia en los campos de ingreso
-	- >>>>>>>Contratos proximos a concluir (sentencia de sql) <- 
 	
-
-	->>>>>>>> Promedio de productividad general (todos los activos y su productividad) <-
 	
-
-	->>>>>>. Transferencia de empleado (moverlo de sucursal) <-
-	
+	-----------------------------
+		FALTANTES
+	----------------------------
 
 	- Modificar contrato
-	
-
-	->>>>>.  Registrar falta <-
-	
 
 	- Crear Objetivo 
-	
-
-	->>>>>> Despedir (campo contrato en empleado = nulo) <-
-	
-
-	->>>>>>> Consultas los obejtivos de un empleado y retornas el promedio de avance
-	-CHECAR>>>>> Inasistencias (faltas de tipo inasistencias) <-
-	
-
-	-CHECAR>>>>. Dias para el fin de contrato (consultar fecha fin de contrato) <-
-	->>>>>>>. Dias de vacaciones <-
-	->>>>>>>.  Faltas (conteo de faltas que no sean de tipo inasistencias) <- 
-	
 
 	- EndoPoint para la informacion de los lugares (sucursales) empleados y productividad (contar en ambos campos)
-	->>>>>>> Endpoint de lista de empleados dado el lugar (tabla de empleados pero filtrando el lugar)
+
 	- EndPoints de sugerencia en los campos de ingreso
 	
+	----------------------------------
+		FALTA CHECAR SI JALAN
+	----------------------------------
 
-	->>>>>>>>. Contratos proximos a concluir (sentencia de sql) por lugar <-
+	- CHECAR > Inasistencias (faltas de tipo inasistencias) <-
+
+	- CHECAR > Dias para el fin de contrato (consultar fecha fin de contrato) <-
+
+	- CHECAR > Promedio de productividad general (todos los activos y su productividad) por lugar
+
+	----------------------------
+		ACABADOS
+	----------------------------
+
+	- Contratos proximos a concluir (sentencia de sql) 
 	
+	- Promedio de productividad general (todos los activos y su productividad) 
+	
+	- Transferencia de empleado (moverlo de sucursal) 
+	
+	- Registrar falta 
+	
+	- Despedir (campo contrato en empleado = nulo) <-
+	
+	- Consultas los obejtivos de un empleado y retornas el promedio de avance
+	
+	- Dias de vacaciones <-
+	
+	- Faltas (conteo de faltas que no sean de tipo inasistencias) <- 
 
-	- CHECAR>>>>>> Promedio de productividad general (todos los activos y su productividad) por lugar
-
+	- Endpoint de lista de empleados dado el lugar (tabla de empleados pero filtrando el lugar)
+	
+	- Contratos proximos a concluir (sentencia de sql) por lugar <-
 
 
 
