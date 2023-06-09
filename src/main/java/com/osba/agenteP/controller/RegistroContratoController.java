@@ -2,20 +2,19 @@ package com.osba.agenteP.controller;
 
 import com.osba.agenteP.domain.RegistroContratos;
 import com.osba.agenteP.model.CambioLugar;
+import com.osba.agenteP.model.EmpleadoPorLugar;
 import com.osba.agenteP.model.IdContrato;
 import com.osba.agenteP.model.RfcEmpleado;
 import com.osba.agenteP.repository.RegistroContratosRepository;
 import com.osba.agenteP.service.RegistroContratosService;
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 //TODO Manejar los errores
 @RestController
@@ -86,5 +85,9 @@ public class RegistroContratoController {
        return Collections.singletonMap("cambio",true);
     }
 
+    @GetMapping("/empleadosLugar/{idLugar}")
+    public List<EmpleadoPorLugar> getEmpleadosPorLugar(@PathVariable Integer idLugar){
+        return registroContratosRepository.empleadosByLugar(idLugar);
+    }
 
 }
