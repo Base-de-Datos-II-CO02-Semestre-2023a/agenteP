@@ -67,10 +67,6 @@ BackEnd
 
 
 
-
-
-
-
 INVENTARIO 
 	- Uso de almacenamiento (datamart)
 	- Reabastecimientos recomendados (conteo de articulos en el inventario proximos a cero)
