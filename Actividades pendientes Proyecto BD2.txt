@@ -39,7 +39,7 @@ BackEnd
 	
 
 	->>>>>>> Consultas los obejtivos de un empleado y retornas el promedio de avance
-	->>>>>>> Inasistencias (faltas de tipo inasistencias) 
+	->>>>>>> Inasistencias (faltas de tipo inasistencias) <-
 	
 
 	->>>>>>>. Dias para el fin de contrato (consultar fecha fin de contrato) <-
