@@ -20,7 +20,7 @@ BackEnd
 	- >>>>>>>Contratos proximos a concluir (sentencia de sql) <- 
 	
 
-	- Promedio de productividad general (todos los activos y su productividad) <-
+	->>>>>>>> Promedio de productividad general (todos los activos y su productividad) <-
 	
 
 	->>>>>>. Transferencia de empleado (moverlo de sucursal) <-
