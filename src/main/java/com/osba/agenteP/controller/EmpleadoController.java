@@ -3,6 +3,7 @@ package com.osba.agenteP.controller;
 import com.osba.agenteP.domain.Falta;
 import com.osba.agenteP.model.*;
 import com.osba.agenteP.repository.EmpleadoRepository;
+import com.osba.agenteP.repository.ObjetivoRepository;
 import com.osba.agenteP.service.EmpleadoService;
 import com.osba.agenteP.domain.Empleado;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class EmpleadoController {
 
     @Autowired
     private EmpleadoRepository empleadoRepository;
+
+    @Autowired
+    private ObjetivoRepository objetivoRepository;
 
     @GetMapping()
     public List<EmpleadoEncontrado> empleado(){
@@ -100,6 +104,11 @@ public class EmpleadoController {
         empleadoRepository.registrarFalta(falta.getIdEmpleado(),falta.getTipo().toString(),falta.getFecha(),falta.getImpactoProductividad(),falta.getDescripcion());
         return Collections.singletonMap("Falta",true);
 
+    }
+
+    @GetMapping("/avance/{id}")
+    public Map<String,Double> getAvance(@PathVariable Integer id){
+        return Collections.singletonMap("avance", objetivoRepository.getAvance(id));
     }
 
 
