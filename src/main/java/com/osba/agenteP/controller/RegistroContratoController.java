@@ -14,6 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.*;
 
 //TODO Manejar los errores
@@ -88,6 +91,33 @@ public class RegistroContratoController {
     @GetMapping("/empleadosLugar/{idLugar}")
     public List<EmpleadoPorLugar> getEmpleadosPorLugar(@PathVariable Integer idLugar){
         return registroContratosRepository.empleadosByLugar(idLugar);
+    }
+
+    @GetMapping("/diasRestantes/{id}")
+    public Map<String, Integer > diasRestantes(@PathVariable Integer id){
+
+        LocalDate fechaActual = LocalDate.now();
+        Date fechaFinal = registroContratosRepository.diasFinContrato(id);
+        Integer diferenica = Math.toIntExact(ChronoUnit.DAYS.between((Temporal) fechaActual, (Temporal) fechaFinal));
+
+        return Collections.singletonMap("Dias restantes:", diferenica);
+
+    }
+
+    @GetMapping("/inasistencia/{id}")
+    public Map<String,Integer> inasistencia(@PathVariable Integer id){
+
+        Integer inasistencia = registroContratosRepository.inasistencia(id);
+        return Collections.singletonMap("Inasistencias:", inasistencia);
+
+    }
+
+    @GetMapping("/promedioProductividad/{impacto_productividad}")
+    public Map<String,Double> promedioProductividad(@PathVariable Double impacto_productividad){
+
+        Double promedio_productividad = registroContratosRepository.promedioProductivad(impacto_productividad);
+        return Collections.singletonMap("Promedio de Productividad:", promedio_productividad);
+
     }
 
 }
