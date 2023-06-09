@@ -4,7 +4,6 @@ import com.osba.agenteP.enums.TipoPuesto;
 
 import java.util.Date;
 
-
 public interface EmpleadoPorLugar {
 
     String getRfc();
