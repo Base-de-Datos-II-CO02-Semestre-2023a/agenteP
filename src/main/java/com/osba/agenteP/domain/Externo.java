@@ -4,7 +4,9 @@ package com.osba.agenteP.domain;
 import com.osba.agenteP.enums.TipoCliente;
 import com.osba.agenteP.enums.TipoRegimen;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +14,8 @@ import lombok.ToString;
 
 import java.math.BigInteger;
 
-
+@Entity
+@Table(name = "externo")
 @Getter
 @Setter
 @ToString

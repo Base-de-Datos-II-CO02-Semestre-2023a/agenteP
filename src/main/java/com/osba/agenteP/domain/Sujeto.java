@@ -11,7 +11,8 @@ import lombok.ToString;
 import java.math.BigInteger;
 import java.util.Date;
 
-
+@Entity
+@Table(name = "sujeto")
 @Getter
 @Setter
 @ToString

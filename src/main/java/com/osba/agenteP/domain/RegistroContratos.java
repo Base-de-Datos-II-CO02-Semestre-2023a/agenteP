@@ -13,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@Table(name = "registro_contratos")
+@Table(name = "registroContratos")
 
 public class RegistroContratos {
     @Id @GeneratedValue(generator = "registro_contratos_id_seq")
