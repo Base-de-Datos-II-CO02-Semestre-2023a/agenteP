@@ -120,6 +120,14 @@ public class RegistroContratoController {
 
     }
 
+    //CECHAR EN POSTMAN
+    @GetMapping("/modificarContrato")
+    public Map<String,Boolean> modificarContrato (@RequestBody RegistroContratos body){
+
+        registroContratosRepository.modificarContrato(body.getIdEmpleado(), body.getFechaInicio(),body.getFechaFin(),body.getPuesto(),body.getSalario(),body.getDiasVacaciones());
+
+        return Collections.singletonMap("modificado:", true);
+    }
 
 
 }

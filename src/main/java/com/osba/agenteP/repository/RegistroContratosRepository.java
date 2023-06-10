@@ -1,7 +1,7 @@
 package com.osba.agenteP.repository;
 
-import com.osba.agenteP.domain.Empleado;
 import com.osba.agenteP.domain.RegistroContratos;
+import com.osba.agenteP.enums.TipoPuesto;
 import com.osba.agenteP.model.EmpleadoPorLugar;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -52,6 +52,17 @@ public interface RegistroContratosRepository extends JpaRepository<RegistroContr
             "JOIN sujeto AS s ON s.id = e.id\n" +
             "JOIN lugar AS l ON  l.id = s.id", nativeQuery = true)
     public Double promedioProductivad (Double impacto_productividad);
+
+    //CHECAR EN POSTMAN
+    @Query(value = "UPDATE registro_contratos\n" +
+            "SET fecha_inicio = :fecha_inicio,\n" +
+            "    fecha_fin = :fecha_fin,\n" +
+            "    puesto = :puesto,\n" +
+            "    salario = :saario,\n" +
+            "    dias_vacaciones = :dias_vacaciones,\n" +
+            "WHERE id_empleado = :id_empleado;", nativeQuery = true)
+
+    public void modificarContrato (Integer id_empelado, Date fecha_inicio, Date fecha_fin, TipoPuesto puesto, Double salario, Integer Vacaciones);
 
 
 }

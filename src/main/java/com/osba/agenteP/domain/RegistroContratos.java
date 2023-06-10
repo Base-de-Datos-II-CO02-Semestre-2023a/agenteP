@@ -26,7 +26,7 @@ public class RegistroContratos {
     private Date fechaFin;
     @Enumerated(EnumType.STRING)
     private TipoPuesto puesto;
-    private float salario;
+    private Double salario;
     private int horasDiarias;
     private int diasVacaciones;
 

@@ -1,4 +1,4 @@
-package com.osba.agenteP.model;
+package com.osba.agenteP.enums;
 
 public enum TipoRegimen {
 

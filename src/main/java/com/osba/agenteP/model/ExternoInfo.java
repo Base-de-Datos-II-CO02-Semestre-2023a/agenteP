@@ -1,5 +1,8 @@
 package com.osba.agenteP.model;
 
+import com.osba.agenteP.enums.TipoCliente;
+import com.osba.agenteP.enums.TipoRegimen;
+
 public interface ExternoInfo  {
 
     Integer getId();
