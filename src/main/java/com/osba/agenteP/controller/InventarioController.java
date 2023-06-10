@@ -38,4 +38,10 @@ public class InventarioController {
     public List<InventarioLugar> inventarioLugar(@PathVariable String nombre){
         return inventarioRepository.inventarioLugar(nombre);
     }
+
+    @GetMapping("/articulosDistintos")
+    public Map<String,Integer> articulosDistintos(){
+        return Collections.singletonMap("articulos distintos",inventarioRepository.articulosDistintos());
+
+    }
 }
