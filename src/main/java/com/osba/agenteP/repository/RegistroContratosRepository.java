@@ -50,9 +50,9 @@ public interface RegistroContratosRepository extends JpaRepository<RegistroContr
     public Double promedioProductivad (Double impacto_productividad);
 
     //CHECAR EN POSTMAN
-    @Query(value = "UPDATE registro_contratos SET fecha_inicio = :fecha_inicio, fecha_fin = :fecha_fin, puesto = :puesto, salario = :saario, dias_vacaciones = :dias_vacaciones, WHERE id_empleado = :id_empleado", nativeQuery = true)
+    @Query(value = "UPDATE registro_contratos SET fecha_inicio = :fecha_inicio, fecha_fin = :fecha_fin, puesto = :puesto, salario = :salario, dias_vacaciones = :dias_vacaciones, WHERE id_empleado = :id_empleado", nativeQuery = true)
 
-    public void modificarContrato (Integer id_empelado, Date fecha_inicio, Date fecha_fin, TipoPuesto puesto, Double salario, Integer Vacaciones);
+    public void modificarContrato (Date fecha_inicio, Date fecha_fin, TipoPuesto puesto, Double salario, Integer dias_vacaciones, Integer id_empleado);
 
 
 }

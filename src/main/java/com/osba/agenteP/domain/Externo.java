@@ -34,6 +34,7 @@ public class Externo {
     private Integer numeroInterno;
     @Nullable
     private Integer numeroExterno;
+
     private String rfc;
     private TipoRegimen regimenFiscal;
 

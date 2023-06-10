@@ -22,6 +22,7 @@ public class ReabastecimientoController {
     @GetMapping("/crearReabastecimiento")
     public Map<String,Boolean> crearReabastecimiento (@RequestBody Reabastecimiento body){
 
+
         reabastecimientoRepository.crearReabastecimiento(body.getId(),body.getId_lugar(),body.getId_provedor(),body.getTotal_compra(),body.getFecha());
         return Collections.singletonMap("Creacion de reabastecimiento",true);
     }

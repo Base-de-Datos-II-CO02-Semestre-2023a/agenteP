@@ -1,14 +1,12 @@
 package com.osba.agenteP.controller;
 
 
+import com.osba.agenteP.domain.Externo;
 import com.osba.agenteP.model.ExternoInfo;
 import com.osba.agenteP.repository.ExternoRepository;
 import com.osba.agenteP.repository.ReabastecimientoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/externo")
@@ -18,15 +16,23 @@ public class ExternoController {
     private ExternoRepository externoRepository;
 
     //CHECAR EN POSTMAN
-    @GetMapping("/datosProveedor/{id}")
+    @GetMapping("/datosProveedor/{rfc}")
     public ExternoInfo datosProveedor(@PathVariable String rfc){
        return externoRepository.getExternoInfo(rfc);
     }
 
     //CHECAR EN POSTMAN
-    @GetMapping("/ExistenciaProveedor/{id}")
+    @GetMapping("/existenciaProveedor/{rfc}")
     public Boolean ExistenciaProveedor(@PathVariable String rfc){
         return externoRepository.provedorExistente(rfc);
+    }
+
+    //CHECAR POSTMAN
+    @GetMapping("/ingresoExterno")
+    public Boolean IngresoExterno (@RequestBody Externo body) {
+
+        return externoRepository.insertarExterno(body.getId(),body.getNombre(),body.getTelefono(), body.getCorreo(), body.getCodigoPostal(),body.getIdCiudad(),body.getCalle(), body.getNumeroInterno(), body.getNumeroExterno(),body.getRfc(),body.getRegimenFiscal(),body.getTipo());
+
     }
 
 }
