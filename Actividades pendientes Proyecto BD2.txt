@@ -25,7 +25,7 @@ BackEnd
 
 	- Modificar contrato
 
-	- Crear Objetivo 
+	
 
 	- (Posible hecho por  humberto) EndoPoint para la informacion de los lugares (sucursales) empleados y productividad (contar en ambos campos)
 
@@ -40,6 +40,8 @@ BackEnd
 	- CHECAR > Dias para el fin de contrato (consultar fecha fin de contrato) <-
 
 	- CHECAR > Promedio de productividad general (todos los activos y su productividad) por lugar
+	
+	-CHECAR Crear Objetivo 
 
 	----------------------------
 		ACABADOS
