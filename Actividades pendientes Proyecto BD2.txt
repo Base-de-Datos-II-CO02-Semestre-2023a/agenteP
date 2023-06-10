@@ -68,12 +68,13 @@ BackEnd
 	- Productos proximos a caducar (count de productos a caducar en inventario)
 	
 	- Reabastecimientos recomendados (conteo de articulos en el inventario proximos a cero)
+	
+	- Articulos distintos en stock
 
 
 
 INVENTARIO 
 	- Uso de almacenamiento (datamart)
-	- Articulos distintos en stock
 	- Espacio usado (query compuesto, usando tablas inventario y lugares, checar almacenamiento maximo total)
 	
 
