@@ -27,7 +27,7 @@ BackEnd
 
 	- Crear Objetivo 
 
-	- EndoPoint para la informacion de los lugares (sucursales) empleados y productividad (contar en ambos campos)
+	- (Posible hecho por  humberto) EndoPoint para la informacion de los lugares (sucursales) empleados y productividad (contar en ambos campos)
 
 	- EndPoints de sugerencia en los campos de ingreso
 	
