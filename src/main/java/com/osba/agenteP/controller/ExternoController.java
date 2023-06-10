@@ -18,13 +18,13 @@ public class ExternoController {
     private ExternoRepository externoRepository;
 
     @GetMapping("/datosProveedor/{id}")
-    public ExternoInfo datosProveedor(@PathVariable Integer id){
-       return externoRepository.getExternoInfo(id);
+    public ExternoInfo datosProveedor(@PathVariable String rfc){
+       return externoRepository.getExternoInfo(rfc);
     }
 
     @GetMapping("/ExistenciaProveedor/{id}")
-    public Boolean ExistenciaProveedor(@PathVariable Integer id){
-        return externoRepository.provedorExistente(id);
+    public Boolean ExistenciaProveedor(@PathVariable String rfc){
+        return externoRepository.provedorExistente(rfc);
     }
 
 }

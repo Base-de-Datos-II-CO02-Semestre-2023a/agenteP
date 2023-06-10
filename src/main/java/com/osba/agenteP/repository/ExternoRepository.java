@@ -8,11 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ExternoRepository extends JpaRepository<Objetivo, Integer> {
 
-    @Query(value = "SELECT * FROM reabastecimiento WHERE id_provedor = proveedor_id;", nativeQuery = true)
-    public ExternoInfo getExternoInfo (Integer proveedorId);
+    @Query(value = "SELECT * FROM externo WHERE rfc = :rfc;", nativeQuery = true)
+    public ExternoInfo getExternoInfo (String rfc);
 
-    @Query(value ="SELECT * FROM proveedor WHERE id_proveedor = proveedor_id;", nativeQuery = true)
-    public Boolean provedorExistente (Integer proveedorId);
+    @Query(value ="SELECT * FROM externo WHERE rfc = :prfc;", nativeQuery = true)
+    public Boolean provedorExistente (String rfc);
 
 
 
