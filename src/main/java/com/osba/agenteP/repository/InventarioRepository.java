@@ -29,4 +29,7 @@ public interface InventarioRepository extends JpaRepository<Inventario,Integer> 
 
     @Query(value = "SELECT SUM(id_articulo) FROM inventario WHERE id_lugar = :id_lugar", nativeQuery = true)
     public Integer sumaArticulos (Integer id_lugar);
+
+    @Query(value = " Select c.descripcion FROM cat_prod_ser AS c JOIN articulo AS a ON a.descripcion = c.clave JOIN inventario AS i ON i.id_articulo = a.id JOIN lugar AS l ON i.id_lugar = l.id WHERE l.id = :id_lugar AND a.id = :id_articulo")
+    public String descripcionArticulos (Integer id_lugar, Integer id_articulo);
 }
