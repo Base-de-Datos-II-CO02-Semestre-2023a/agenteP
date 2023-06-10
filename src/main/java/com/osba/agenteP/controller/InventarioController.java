@@ -2,6 +2,7 @@ package com.osba.agenteP.controller;
 
 import com.osba.agenteP.domain.Inventario;
 import com.osba.agenteP.domain.RegistroContratos;
+import com.osba.agenteP.model.ArticuloId;
 import com.osba.agenteP.model.InventarioId;
 import com.osba.agenteP.model.InventarioLugar;
 import com.osba.agenteP.repository.InventarioRepository;
@@ -51,7 +52,7 @@ public class InventarioController {
     }
 //CHECAR CON POSTMAN
     @GetMapping("/descripcionArticulos")
-    public Map<String,String> descrpcionArticulos(@RequestBody InventarioId body){
+    public Map<String,String> descripcionArticulos(@RequestBody ArticuloId body){
         return Collections.singletonMap("Descripcion",inventarioRepository.descripcionArticulos(body.getIdLugar(),body.getIdArticulo()));
 
     }
