@@ -1,10 +1,7 @@
 package com.osba.agenteP.controller;
 
 import com.osba.agenteP.domain.RegistroContratos;
-import com.osba.agenteP.model.CambioLugar;
-import com.osba.agenteP.model.EmpleadoPorLugar;
-import com.osba.agenteP.model.IdContrato;
-import com.osba.agenteP.model.RfcEmpleado;
+import com.osba.agenteP.model.*;
 import com.osba.agenteP.repository.RegistroContratosRepository;
 import com.osba.agenteP.service.RegistroContratosService;
 import org.apache.catalina.LifecycleState;
@@ -119,5 +116,7 @@ public class RegistroContratoController {
         return Collections.singletonMap("Promedio de Productividad:", promedio_productividad);
 
     }
+
+
 
 }

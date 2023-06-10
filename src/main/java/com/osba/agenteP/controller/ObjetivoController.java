@@ -3,10 +3,7 @@ package com.osba.agenteP.controller;
 import com.osba.agenteP.domain.Objetivo;
 import com.osba.agenteP.repository.ObjetivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,5 +20,13 @@ public class ObjetivoController {
     public List<Objetivo> getObjetivos(){
         return objetivoRepository.getObjetivo();
     }
+
+    @GetMapping("/crearObjetivo")
+    public Map<String, Boolean> cambiarLugar(@RequestBody Objetivo body) {
+        objetivoRepository.crearObjetivo(body.getIdEmpleado(), body.getDescripcion(), body.getPorcentajeAvance(), body.getImpactoProductividad());
+        return Collections.singletonMap("Creacion del objetivo", true);
+    }
+
+
 
 }

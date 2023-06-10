@@ -34,13 +34,13 @@ public interface RegistroContratosRepository extends JpaRepository<RegistroContr
     public void moverEmpleadoSucursal(Integer id_empleado,Integer id_lugar);
 
     @Query(value= "SELECT empleado.rfc, empleado.nombre, registro_contratos.puesto, registro_contratos.salario, empleado.indice_productividad, empleado.fecha_de_ingreso FROM empleado INNER JOIN registro_contratos ON empleado.id = registro_contratos.id_empleado" +
-            " WHERE registro_contratos.id_lugar = :idLugar", nativeQuery = true)
+            " WHERE registro_contratos.id_lugar = :idLugar;", nativeQuery = true)
     public List<EmpleadoPorLugar> empleadosByLugar(Integer idLugar);
 
-    @Query(value = "Select fecha_fin From registro_contratos Where id = :id", nativeQuery = true)
+    @Query(value = "Select fecha_fin From registro_contratos Where id = :id;", nativeQuery = true)
     public Date diasFinContrato (Integer id);
 
-    @Query(value = "SELECT COUNT (tipo) FROM falta WHERE tipo = 'inasistencia' AND id_empleado = :id", nativeQuery = true)
+    @Query(value = "SELECT COUNT (tipo) FROM falta WHERE tipo = 'inasistencia' AND id_empleado = :id;", nativeQuery = true)
     public Integer inasistencia (Integer id);
 
     @Query(value = "Select AVG (o.impacto_productividad)\n" +
