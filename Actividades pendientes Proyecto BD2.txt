@@ -76,6 +76,10 @@ BackEnd
 	- Buscar proveedor existente 
 	
 	- Agregar proveedor y cliente (mismo codigo cambia solo el tipo)
+	
+	INVENTARIO POR LUGAR 
+	- Suma por articulos en base al lugar (filtrar en articulo y en lugar)
+	- Descrpcion del los articulos especificos dependiendo el lugar (posible datamart)
 
 
 
@@ -84,9 +88,7 @@ INVENTARIO
 	- Espacio usado (query compuesto, usando tablas inventario y lugares, checar almacenamiento maximo total)
 	
 
-INVENTARIO POR LUGAR 
-	- Suma por articulos en base al lugar (filtrar en articulo y en lugar)
-	- Descrpcion del los articulos especificos dependiendo el lugar (posible datamart)
+
 
 REABASTECIMIENTO
 	- (Solo creacion de reabastecimeinto) Crear movimiento de reabasticmiento (solo datos no nulos)
