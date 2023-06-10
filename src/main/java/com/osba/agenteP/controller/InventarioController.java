@@ -44,4 +44,10 @@ public class InventarioController {
         return Collections.singletonMap("articulos distintos",inventarioRepository.articulosDistintos());
 
     }
+
+    @GetMapping("/sumaArticulos/{id_lugar}")
+    public Map<String,Integer> sumaArticulos(@PathVariable Integer id_lugar){
+        return Collections.singletonMap("Articulos totales",inventarioRepository.sumaArticulos(id_lugar));
+
+    }
 }
