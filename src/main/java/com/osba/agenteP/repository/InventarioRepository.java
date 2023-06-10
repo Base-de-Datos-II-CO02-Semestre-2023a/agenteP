@@ -31,6 +31,6 @@ public interface InventarioRepository extends JpaRepository<Inventario,Integer> 
     public Integer sumaArticulos (Integer id_lugar);
 
     //CHECAR CON POSTMAN
-    @Query(value = " Select c.descripcion FROM cat_prod_ser AS c JOIN articulo AS a ON a.descripcion = c.clave JOIN inventario AS i ON i.id_articulo = a.id JOIN lugar AS l ON i.id_lugar = l.id WHERE l.id = :id_lugar AND a.id = :id_articulo", nativeQuery = true)
+    @Query(value = " Select c.descripcion FROM cat_prod_ser AS c JOIN articulo AS a ON a.descripcion = c.clave JOIN inventario AS i ON i.id_articulo = a.id JOIN lugar AS l ON l.id = i.id_lugar WHERE l.id = :id_lugar AND a.id = :id_articulo", nativeQuery = true)
     public String descripcionArticulos (Integer id_lugar, Integer id_articulo);
 }
