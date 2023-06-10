@@ -1,8 +1,7 @@
 package com.osba.agenteP.repository;
 
 import com.osba.agenteP.domain.Empleado;
-import com.osba.agenteP.domain.RegistroContratos;
-import com.osba.agenteP.enums.TipoFalta;
+
 import com.osba.agenteP.model.EmpleadoEncontrado;
 import com.osba.agenteP.model.EmpleadoInfo;
 import com.osba.agenteP.model.EmpleadoProductivo;
@@ -11,7 +10,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -84,7 +82,4 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
     @Modifying
     @Query(value = "INSERT INTO falta(id_empleado, tipo, fecha, impacto_productividad, descripcion) VALUES (:idEmpleado, :tipoFalta, :fechaFalta, :impacto, :descripcion)", nativeQuery = true)
     public void registrarFalta(Integer idEmpleado, String tipoFalta, Date fechaFalta, Double impacto, String descripcion);
-
-
-
 }
