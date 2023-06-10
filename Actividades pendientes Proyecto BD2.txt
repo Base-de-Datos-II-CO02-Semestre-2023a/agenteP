@@ -74,6 +74,8 @@ BackEnd
 	- Regrese Datos de un proveedor dado especifico
 	
 	- Buscar proveedor existente 
+	
+	- Agregar proveedor y cliente (mismo codigo cambia solo el tipo)
 
 
 
@@ -90,7 +92,7 @@ REABASTECIMIENTO
 	- (Solo creacion de reabastecimeinto) Crear movimiento de reabasticmiento (solo datos no nulos)
 	- Agregar concdepto al reabastecimiento (retorna el id del reabastecimiento)
 	- Sugerencia de productos (de acuerdo al nombre de un producto en inventario general)
-	- Agregar proveedor y cliente (mismo codigo cambia solo el tipo)
+	
 FINANZAS
 
 -Articulos más vendidos
