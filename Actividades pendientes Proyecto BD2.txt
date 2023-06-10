@@ -91,3 +91,6 @@ REABASTECIMIENTO
 	- Agregar concdepto al reabastecimiento (retorna el id del reabastecimiento)
 	- Sugerencia de productos (de acuerdo al nombre de un producto en inventario general)
 	- Agregar proveedor y cliente (mismo codigo cambia solo el tipo)
+FINANZAS
+
+-Articulos más vendidos
