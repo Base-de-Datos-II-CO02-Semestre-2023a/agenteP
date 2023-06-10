@@ -1,9 +1,11 @@
 package com.osba.agenteP.controller;
 
 import com.osba.agenteP.domain.Inventario;
+import com.osba.agenteP.model.InventarioLugar;
 import com.osba.agenteP.repository.InventarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,5 +32,10 @@ public class InventarioController {
     @GetMapping("/productos")
     public List<Inventario> cosasEnInventario(){
         return inventarioRepository.cosasEnInventario();
+    }
+
+    @GetMapping("/porLugar/{nombre}")
+    public List<InventarioLugar> inventarioLugar(@PathVariable String nombre){
+        return inventarioRepository.inventarioLugar(nombre);
     }
 }

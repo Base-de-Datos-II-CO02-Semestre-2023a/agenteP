@@ -11,4 +11,8 @@ import java.util.List;
 public interface LugarRepository extends JpaRepository<Lugar, Integer> {
     @Query(value = "select nombre, id from lugar where nombre like('%'||:query||'%')" , nativeQuery = true)
     public List<OptionLugar> lugarSuggestions(String query);
+
+    @Query(value = "SELECT nombre FROM lugar" , nativeQuery = true)
+    public List<String> nombres();
+
 }

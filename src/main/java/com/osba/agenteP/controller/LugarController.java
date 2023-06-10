@@ -18,4 +18,9 @@ public class LugarController {
     private List<OptionLugar> suggestLugar(@PathVariable String query) {
         return lugarRepository.lugarSuggestions(query);
     }
+
+    @GetMapping()
+    public List<String> nombres(){
+        return lugarRepository.nombres();
+    }
 }
