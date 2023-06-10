@@ -8,9 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ExternoRepository extends JpaRepository<Objetivo, Integer> {
 
+    //CHECAR EN POSTMAN
     @Query(value = "SELECT * FROM externo WHERE rfc = :rfc;", nativeQuery = true)
     public ExternoInfo getExternoInfo (String rfc);
 
+    //CHECAR EN POSTMAN
     @Query(value ="SELECT * FROM externo WHERE rfc = :prfc;", nativeQuery = true)
     public Boolean provedorExistente (String rfc);
 

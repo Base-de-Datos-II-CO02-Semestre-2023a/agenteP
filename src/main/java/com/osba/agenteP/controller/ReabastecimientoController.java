@@ -18,6 +18,7 @@ public class ReabastecimientoController {
     @Autowired
     private ReabastecimientoRepository reabastecimientoRepository;
 
+    //CHECAR EN POSTMAN
     @GetMapping("/crearReabastecimiento")
     public Map<String,Boolean> crearReabastecimiento (@RequestBody Reabastecimiento body){
 

@@ -17,11 +17,13 @@ public class ExternoController {
     @Autowired
     private ExternoRepository externoRepository;
 
+    //CHECAR EN POSTMAN
     @GetMapping("/datosProveedor/{id}")
     public ExternoInfo datosProveedor(@PathVariable String rfc){
        return externoRepository.getExternoInfo(rfc);
     }
 
+    //CHECAR EN POSTMAN
     @GetMapping("/ExistenciaProveedor/{id}")
     public Boolean ExistenciaProveedor(@PathVariable String rfc){
         return externoRepository.provedorExistente(rfc);
