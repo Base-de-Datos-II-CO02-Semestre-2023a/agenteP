@@ -1,6 +1,6 @@
 package com.osba.agenteP.repository;
 
-import com.osba.agenteP.domain.Empleado;
+
 import com.osba.agenteP.domain.RegistroContratos;
 import com.osba.agenteP.model.EmpleadoPorLugar;
 import jakarta.transaction.Transactional;
