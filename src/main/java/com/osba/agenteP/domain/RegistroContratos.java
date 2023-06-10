@@ -13,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@Table(name = "registro_contratos")
+@Table(name = "registroContratos")
 
 public class RegistroContratos {
     @Id @GeneratedValue(generator = "registro_contratos_id_seq")
@@ -26,7 +26,7 @@ public class RegistroContratos {
     private Date fechaFin;
     @Enumerated(EnumType.STRING)
     private TipoPuesto puesto;
-    private float salario;
+    private Double salario;
     private int horasDiarias;
     private int diasVacaciones;
 

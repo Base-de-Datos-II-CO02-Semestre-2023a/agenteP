@@ -13,7 +13,7 @@ public interface ObjetivoRepository extends JpaRepository<Objetivo, Integer> {
     @Query(value = "SELECT porcentaje_avance FROM objetivo WHERE id_empleado = :id", nativeQuery = true)
     public Double getAvance(Integer id);
 
-    @Query(value = "INSERT INTO objetivo (id_empleado, descripcion, porcentaje_avance, impacto_productividad)\n" +
-            "VALUES (:id_empleado, :descripcion, :porcentaje_avance, :impacto_productividad);", nativeQuery = true)
+    //CHECAR EN POSTMAN
+    @Query(value = "INSERT INTO objetivo (id_empleado, descripcion, porcentaje_avance, impacto_productividad) VALUES (:id_empleado, :descripcion, :porcentaje_avance, :impacto_productividad)", nativeQuery = true)
     public void crearObjetivo (Integer id_empleado, String descripcion,  Double porcentaje_avance, Double  impacto_productividad);
 }

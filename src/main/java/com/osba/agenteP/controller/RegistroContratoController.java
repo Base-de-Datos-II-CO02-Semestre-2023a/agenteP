@@ -90,6 +90,7 @@ public class RegistroContratoController {
         return registroContratosRepository.empleadosByLugar(idLugar);
     }
 
+    //CHECAR EN POSTMAN
     @GetMapping("/diasRestantes/{id}")
     public Map<String, Integer > diasRestantes(@PathVariable Integer id){
 
@@ -101,6 +102,7 @@ public class RegistroContratoController {
 
     }
 
+    //CHECAR EN POSTMAN
     @GetMapping("/inasistencia/{id}")
     public Map<String,Integer> inasistencia(@PathVariable Integer id){
 
@@ -109,6 +111,7 @@ public class RegistroContratoController {
 
     }
 
+    //CHECAR EN POSTMAN
     @GetMapping("/promedioProductividad/{impacto_productividad}")
     public Map<String,Double> promedioProductividad(@PathVariable Double impacto_productividad){
 
@@ -117,6 +120,14 @@ public class RegistroContratoController {
 
     }
 
+    //CECHAR EN POSTMAN
+    @GetMapping("/modificarContrato")
+    public Map<String,Boolean> modificarContrato (@RequestBody RegistroContratos body){
+
+        registroContratosRepository.modificarContrato(body.getFechaInicio(),body.getFechaFin(),body.getPuesto(),body.getSalario(),body.getDiasVacaciones(), body.getIdEmpleado());
+
+        return Collections.singletonMap("modificado:", true);
+    }
 
 
 }

@@ -21,6 +21,7 @@ public class ObjetivoController {
         return objetivoRepository.getObjetivo();
     }
 
+    //CHECAR EN POSTMAN
     @GetMapping("/crearObjetivo")
     public Map<String, Boolean> cambiarLugar(@RequestBody Objetivo body) {
         objetivoRepository.crearObjetivo(body.getIdEmpleado(), body.getDescripcion(), body.getPorcentajeAvance(), body.getImpactoProductividad());

@@ -1,7 +1,7 @@
 package com.osba.agenteP.repository;
 
-
 import com.osba.agenteP.domain.RegistroContratos;
+import com.osba.agenteP.enums.TipoPuesto;
 import com.osba.agenteP.model.EmpleadoPorLugar;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -34,21 +34,25 @@ public interface RegistroContratosRepository extends JpaRepository<RegistroContr
     public void moverEmpleadoSucursal(Integer id_empleado,Integer id_lugar);
 
     @Query(value= "SELECT empleado.rfc, empleado.nombre, registro_contratos.puesto, registro_contratos.salario, empleado.indice_productividad, empleado.fecha_de_ingreso FROM empleado INNER JOIN registro_contratos ON empleado.id = registro_contratos.id_empleado" +
-            " WHERE registro_contratos.id_lugar = :idLugar;", nativeQuery = true)
+            " WHERE registro_contratos.id_lugar = :idLugar", nativeQuery = true)
     public List<EmpleadoPorLugar> empleadosByLugar(Integer idLugar);
 
-    @Query(value = "Select fecha_fin From registro_contratos Where id = :id;", nativeQuery = true)
+    //CHECAR EN POSTMAN
+    @Query(value = "Select fecha_fin From registro_contratos Where id = :id", nativeQuery = true)
     public Date diasFinContrato (Integer id);
 
-    @Query(value = "SELECT COUNT (tipo) FROM falta WHERE tipo = 'inasistencia' AND id_empleado = :id;", nativeQuery = true)
+    //CHECAR EN POSTMAN
+    @Query(value = "SELECT COUNT (tipo) FROM falta WHERE tipo = 'inasistencia' AND id_empleado = :id", nativeQuery = true)
     public Integer inasistencia (Integer id);
 
-    @Query(value = "Select AVG (o.impacto_productividad)\n" +
-            "FROM objetivo AS o\n" +
-            "JOIN empleado AS e ON e.id = o.id_empleado\n" +
-            "JOIN sujeto AS s ON s.id = e.id\n" +
-            "JOIN lugar AS l ON  l.id = s.id", nativeQuery = true)
+    //CHECAR EN POSTMAN
+    @Query(value = "Select AVG (o.impacto_productividad) FROM objetivo AS o JOIN empleado AS e ON e.id = o.id_empleado JOIN sujeto AS s ON s.id = e.id JOIN lugar AS l ON  l.id = s.id", nativeQuery = true)
     public Double promedioProductivad (Double impacto_productividad);
+
+    //CHECAR EN POSTMAN
+    @Query(value = "UPDATE registro_contratos SET fecha_inicio = :fecha_inicio, fecha_fin = :fecha_fin, puesto = :puesto, salario = :salario, dias_vacaciones = :dias_vacaciones, WHERE id_empleado = :id_empleado", nativeQuery = true)
+
+    public void modificarContrato (Date fecha_inicio, Date fecha_fin, TipoPuesto puesto, Double salario, Integer dias_vacaciones, Integer id_empleado);
 
 
 }

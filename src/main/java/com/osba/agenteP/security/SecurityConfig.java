@@ -43,8 +43,8 @@ public class SecurityConfig{
                     .requestMatchers(HttpMethod.DELETE, "/contrato").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.PATCH, "/empleados/despedir/**","/contrato/cambiarlugar").hasAnyAuthority("Recursos_Humanos", "Admin")
                     .requestMatchers(HttpMethod.GET, "/empleados", "/empleados/**","/contrato/reportemodificaciones","/contrato/concluir","/contrato/concluir/{id}","/productividad/promedio","/contrato/vacaciones/**", "contrato/diasvacaciones/**",
-                            "/contrato/empleadosLugar/**","/empleados/avance/**","/objetivo/objetivos","/inventario/productosCaducar","/inventario/reabasteciemtoRecomendado", "/inventario/productos","/inventario/porLugar/**",
-                            "/lugar", "/inventario/articulosDistintos").hasAnyAuthority("Recursos_Humanos", "Admin")
+                            "/contrato/empleadosLugar/**","/empleados/avance/**","/objetivo/objetivos","/objetivo/crearObjetivo","/inventario/productosCaducar","/inventario/reabasteciemtoRecomendado", "/inventario/productos","/inventario/porLugar/**",
+                            "/lugar", "/inventario/articulosDistintos", "/reabastecimiento/crearReabastecimiento","/externo/datosProveedor/**", "/externo/ExistenciaProveedor/**").hasAnyAuthority("Recursos_Humanos", "Admin")
 
 
                         .anyRequest().denyAll()
