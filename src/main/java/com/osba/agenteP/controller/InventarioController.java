@@ -1,13 +1,12 @@
 package com.osba.agenteP.controller;
 
 import com.osba.agenteP.domain.Inventario;
+import com.osba.agenteP.domain.RegistroContratos;
+import com.osba.agenteP.model.InventarioId;
 import com.osba.agenteP.model.InventarioLugar;
 import com.osba.agenteP.repository.InventarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -44,10 +43,16 @@ public class InventarioController {
         return Collections.singletonMap("articulos distintos",inventarioRepository.articulosDistintos());
 
     }
-
+    //CHECAR CON POSTMAN
     @GetMapping("/sumaArticulos/{id_lugar}")
     public Map<String,Integer> sumaArticulos(@PathVariable Integer id_lugar){
         return Collections.singletonMap("Articulos totales",inventarioRepository.sumaArticulos(id_lugar));
+
+    }
+//CHECAR CON POSTMAN
+    @GetMapping("/descripcionArticulos")
+    public Map<String,String> descrpcionArticulos(@RequestBody InventarioId body){
+        return Collections.singletonMap("Descripcion",inventarioRepository.descripcionArticulos(body.getIdLugar(),body.getIdArticulo()));
 
     }
 }
