@@ -70,6 +70,10 @@ BackEnd
 	- Articulos distintos en stock
 	
 	- Modificar contrato
+	
+	- Regrese Datos de un proveedor dado especifico
+	
+	- Buscar proveedor existente 
 
 
 
@@ -83,9 +87,7 @@ INVENTARIO POR LUGAR
 	- Descrpcion del los articulos especificos dependiendo el lugar (posible datamart)
 
 REABASTECIMIENTO
-	- Crear movimiento de reabasticmiento (solo datos no nulos)
+	- (Solo creacion de reabastecimeinto) Crear movimiento de reabasticmiento (solo datos no nulos)
 	- Agregar concdepto al reabastecimiento (retorna el id del reabastecimiento)
 	- Sugerencia de productos (de acuerdo al nombre de un producto en inventario general)
-	- Regrese Datos de un proveedor dado especifico
-	- Buscar proveedor existente 
 	- Agregar proveedor y cliente (mismo codigo cambia solo el tipo)
