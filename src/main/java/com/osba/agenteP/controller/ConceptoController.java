@@ -1,6 +1,6 @@
 package com.osba.agenteP.controller;
 
-import com.osba.agenteP.model.ArticulosMasVendidos;
+import com.osba.agenteP.model.ArticulosVendidos;
 import com.osba.agenteP.repository.ConceptoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,11 @@ public class ConceptoController {
     private ConceptoRepository conceptoRepository;
 
     @GetMapping("/articulosMasVendidos")
-    public List<ArticulosMasVendidos> articulosMasVendidos(){
+    public List<ArticulosVendidos> articulosMasVendidos(){
         return conceptoRepository.articulosMasVendidos();
+    }
+    @GetMapping("/articulosMenosVendidos")
+    public List<ArticulosVendidos> articulosMenosVendidos(){
+        return conceptoRepository.articulosMenosVendidos();
     }
 }
