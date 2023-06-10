@@ -1,2 +1,8 @@
-package com.osba.agenteP.model;public class TipoCliente {
+package com.osba.agenteP.model;
+
+public enum TipoCliente {
+
+    CLIENTE,
+    PROVEEDOR
+
 }

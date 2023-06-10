@@ -12,8 +12,9 @@ import lombok.*;
 @AllArgsConstructor
 public class Objetivo {
 
-    @Id @GeneratedValue(generator = "objetivo_id_seq")
-    @SequenceGenerator(name = "objetivo_id_seq", sequenceName = "objetivo_id_seq", allocationSize = 1)
+
+
+    @Id
     private Integer id;
     private Integer idEmpleado;
     private String descripcion;
