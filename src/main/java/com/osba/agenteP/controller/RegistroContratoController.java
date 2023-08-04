@@ -61,7 +61,7 @@ public class RegistroContratoController {
     @GetMapping("/reportemodificaciones")
     public String getReporteModificaciones(@RequestBody RfcEmpleado body){
         String rfc = "'ejemploderfc'";
-        return"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+registroContratosRepository.getReporteModificaciones(rfc);
+        return"<?xml version=\"1.0\" encoding=\"UTF-8\"?> "+registroContratosRepository.getReporteModificaciones(rfc);
     }
 
     @GetMapping("/concluir")
@@ -71,7 +71,7 @@ public class RegistroContratoController {
 
     @GetMapping("/concluir/{id}")
     public Map <String,Integer> getContratosConcluirLugar(@PathVariable Integer id){
-        return Collections.singletonMap("contratos ", registroContratosRepository.getConcluirContratosLugar(id));
+        return Collections.singletonMap("contratos", registroContratosRepository.getConcluirContratosLugar(id));
     }
 
     @GetMapping("/vacaciones/{id}")

@@ -65,21 +65,26 @@ public class EmpleadoController {
     public Map<String, Integer> contarEmpleadosDeVacaciones(){
         return Collections.singletonMap("empleados",empleadoRepository.contarEmpleadosVacaciones());
     }
+    @GetMapping("/vacaciones/contar/{id}")
+    public Map<String, Integer> contarEmpleadosDeVacacionesLugar(@PathVariable Integer id){
+        return Collections.singletonMap("empleados",empleadoRepository.contarEmpleadosVacaciones(id));
+    }
 
     @GetMapping("/productividad/promedio")
     public Map<String,Double> getPromedioProductividad(){
-        return Collections.singletonMap("promedio general ",empleadoRepository.getPromedioProductividad());
+        return Collections.singletonMap("productividad",empleadoRepository.getPromedioProductividad());
     }
 
     @PatchMapping("/despedir/{id}")
     public Map<String,Boolean> despedirEmpleado(@PathVariable Integer id){
+        System.out.println(id);
         boolean isFired = empleadoService.despedirEmpleado(id);
 
         if (isFired) {
-            return Collections.singletonMap("Despedio", true);
+            return Collections.singletonMap("status", true);
         }
         else {
-            return Collections.singletonMap("Despedido", false);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Puede que el usuario ya no tenga contrato");
         }
     }
 
@@ -101,6 +106,4 @@ public class EmpleadoController {
         return Collections.singletonMap("Falta",true);
 
     }
-
-
 }

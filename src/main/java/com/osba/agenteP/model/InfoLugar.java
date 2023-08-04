@@ -1,16 +1,16 @@
 package com.osba.agenteP.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.math.BigInteger;
 
-public interface BuscarLugar {
+public interface InfoLugar {
     Integer getId();
     Integer getEmpleados();
-    float getProductividad();
+    Float getProductividad();
     String getNombre();
     String getNombreEncargado();
     String getDireccion();
 
     String getTipo();
-
+    Long getTelefono();
+    String getCorreo();
 }

@@ -1,8 +1,6 @@
 package com.osba.agenteP.controller;
 
-import com.osba.agenteP.model.BuscarLugar;
-import com.osba.agenteP.model.BusquedaLugar;
-import com.osba.agenteP.model.OptionLugar;
+import com.osba.agenteP.model.*;
 import com.osba.agenteP.repository.LugarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +25,14 @@ public class LugarController {
     @GetMapping("buscar/rh")
     private List<BuscarLugar> searchAllRH(){
         return lugarRepository.searchAllRh();
+    }
+
+    @GetMapping("/rh/{id}")
+    private InfoLugar getInfoLugarRh(@PathVariable Integer id){
+        return lugarRepository.getInforamtion(id);
+    }
+    @GetMapping("/empleados/{lugar}")
+    private List<EmpleadoEncontrado> empleadosLugar(@PathVariable Integer lugar){
+        return  lugarRepository.empleados(lugar);
     }
 }
